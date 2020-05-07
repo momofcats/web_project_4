@@ -4,4 +4,5 @@
   height: 50px;
   border: 2px solid #FFFFFF;
   background-size: 22px 22px;
+  justify-self: end;
 }

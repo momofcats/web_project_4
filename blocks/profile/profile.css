@@ -1,13 +1,22 @@
 @import url('__image/profile__image.css');
-@import url('__info/profile__info.css/');
+@import url('__info/profile__info.css');
 @import url('__name/profile__name.css');
 @import url('__subtitle/profile__subtitle.css');
-
 @import url('__btn/profile__btn.css');
 @import url('__btn/_type/profile__btn_type_add.css');
 @import url('__btn/_type/profile__btn_type_edit.css');
 
 .profile {
-  display: flex;
-  justify-content: space-between;
+  padding-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-auto-rows: min-content;
+  align-items: center;
 }
+
+
+
+
+
+
+
