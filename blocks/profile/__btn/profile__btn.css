@@ -1,0 +1,13 @@
+@import url('_type/profile__btn_type_add.css');
+@import url('_type/profile__btn_type_edit.css');
+
+.profile__btn {
+  box-sizing: border-box;
+  background-color: #000000;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-image: none;
+}
+
+
+
