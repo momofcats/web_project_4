@@ -1,11 +1,13 @@
+@import url('__container/popup__container.css');
+@import url('___btn-close/popup__btn-close.css');
+
 .popup {
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  opacity: 0.5;
-  background-color: #000;
+  background-color: rgba(0,0,0,.5);
   display: flex;
   justify-content: center;
   align-items: center;
