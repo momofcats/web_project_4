@@ -6,3 +6,13 @@
   background-size: 22px 22px;
   justify-self: end;
 }
+
+@media screen and (max-width: 320px) {
+  .profile__btn_type_add {
+    max-width: 282px;
+    background-size: 16px 16px;
+    width: 100%;
+    margin-top: 36px;
+    justify-self: center;
+  }
+}

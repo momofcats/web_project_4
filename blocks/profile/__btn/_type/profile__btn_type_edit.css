@@ -7,3 +7,15 @@
   margin-left: 24px;
 
 }
+
+@media screen and (max-width: 320px) {
+  .profile__btn_type_edit {
+    font-size: 14px;
+    line-height: 17px;
+    width: 18px;
+    height: 18px;
+    background-size: 5px 5px;
+    margin-left: 12px;
+    display: inline-block;
+  }
+}
