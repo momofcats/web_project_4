@@ -5,7 +5,13 @@
   align-items: center;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 740px){
+  .profile__info{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
   .profile__info {
     width: 100%;
     justify-content: center;

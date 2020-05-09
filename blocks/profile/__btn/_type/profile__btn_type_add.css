@@ -6,13 +6,17 @@
   background-size: 22px 22px;
   justify-self: end;
 }
-
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 740px) {
   .profile__btn_type_add {
-    max-width: 282px;
+    justify-self: start;
+    grid-column: span 1/-1;
+
+  }}
+  @media screen and (max-width: 480px) {
+    .profile__btn_type_add {
+      width: 100%;
+      max-width: 282px;
     background-size: 16px 16px;
-    width: 100%;
     margin-top: 36px;
-    justify-self: center;
+    }
   }
-}

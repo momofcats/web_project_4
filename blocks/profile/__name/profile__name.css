@@ -7,6 +7,12 @@ padding-bottom: 6px;
 }
 
 
+@media screen and (min-width: 321px) and (max-width: 882px){
+  .profile__name {
+    font-size: 5vw;
+  }
+}
+
 @media screen and (max-width: 320px) {
  .profile__name {
    font-size: 22px;
