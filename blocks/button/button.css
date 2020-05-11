@@ -1,0 +1,13 @@
+.button {
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: #000000;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-image: none;
+}
+
+.button:hover {
+  opacity: .6;
+}
+

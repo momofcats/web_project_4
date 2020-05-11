@@ -11,7 +11,7 @@
 
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 570px) {
   .popup__container {
     max-width: 250px;
   }
@@ -19,8 +19,3 @@
 
 
 
-@media screen and (max-width: 740px) {
-  .popup__container {
-    max-width: 250px;
-  }
-}
