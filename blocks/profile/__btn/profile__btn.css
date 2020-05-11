@@ -10,20 +10,24 @@
   height: 50px;
   border: 2px solid #FFFFFF;
   background-size: 22px 22px;
+  grid-area: button;
   justify-self: end;
 }
 
 @media screen and (max-width: 740px) {
   .profile__btn {
     justify-self: start;
-    grid-column: span 1/-1;
+    margin-top: 36px;
+  }
+}
 
-  }}
+
+
   @media screen and (max-width: 480px) {
     .profile__btn {
       width: 100%;
       max-width: 282px;
     background-size: 16px 16px;
-    margin-top: 36px;
+    justify-self: center;
     }
   }

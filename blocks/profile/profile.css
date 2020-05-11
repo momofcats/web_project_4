@@ -3,27 +3,36 @@
 
 .profile {
   padding-top: 36px;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-auto-rows: min-content;
-  align-items: center;
-  max-width: 882px;
-  width: 100%;
+    display: grid;
+    grid-template-columns: 150px 2fr 1fr;
+    grid-template-areas: "image media button";
+    width: 100%;
+    align-items: center;
 }
 
 @media screen and (max-width: 740px) {
   .profile {
-    grid-template-columns: 1fr 3fr;
-    grid-gap: 5%;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas:
+    "image media"
+    ". button";
+    grid-auto-rows: min-content;
   }
 }
 
 
 @media screen and (max-width: 480px) {
   .profile {
+    min-height: 286px;
     grid-template-columns: 1fr;
+    grid-template-areas:
+    "image"
+    "media"
+    "button";
+    grid-auto-rows: min-content;
   }
-}
+  }
+
 
 
 

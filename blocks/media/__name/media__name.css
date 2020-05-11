@@ -3,18 +3,19 @@
 font-size: 42px;
 line-height: 56px;
 margin: 0;
-padding-bottom: 6px;
 }
 
 
-@media screen and (min-width: 321px) and (max-width: 882px){
+@media screen and (max-width: 810px){
   .media__name {
     font-size: 5vw;
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
  .media__name {
+   padding-top: 15px;
    font-size: 22px;
+   text-align: center;
  }
 }
