@@ -4,6 +4,17 @@
   margin: 0 auto;
   background: #000000;
   font-family: 'Inter',Arial, Helvetica, sans-serif;
-  color: white;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 0;
+  color: #fff;
   max-width: 882px;
+}
+
+@media screen and (max-width: 480px) {
+  .page {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
