@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   border-image: none;
+  margin-bottom: -6px;
 
 }
 
@@ -22,6 +23,6 @@
     background-size: 5px 5px;
     margin-left: 12px;
     display: inline-block;
-    margin-bottom: -5px;
+    margin-bottom: -14px;
   }
 }

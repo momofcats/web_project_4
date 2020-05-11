@@ -1,5 +1,7 @@
+@import url('__section/page__section.css');
+
 .page {
-  margin: auto;
+  margin: 0 auto;
   background: #000000;
   font-family: 'Inter',Arial, Helvetica, sans-serif;
   color: white;
