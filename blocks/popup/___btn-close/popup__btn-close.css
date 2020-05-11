@@ -9,3 +9,10 @@
   left: 416px;
 
 }
+
+@media screen and (max-width: 480px){
+  .popup__btn-close {
+    left: 233px;
+
+  }
+}

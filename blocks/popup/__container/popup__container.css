@@ -10,3 +10,17 @@
   box-sizing: border-box;
 
 }
+
+@media screen and (max-width: 740px) {
+  .popup__container {
+    max-width: 250px;
+  }
+}
+
+
+
+@media screen and (max-width: 740px) {
+  .popup__container {
+    max-width: 250px;
+  }
+}
