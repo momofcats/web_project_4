@@ -4,24 +4,30 @@
 .profile {
   padding-top: 36px;
     display: grid;
-    grid-template-columns: 150px 2fr 1fr;
-    grid-template-areas: "image media button";
+    grid-template-columns: repeat(auto-fit, minmax(282px,1fr));
+    grid-template-areas: "media button";
     width: 100%;
     align-items: center;
 }
 
+@media screen and (max-width: 980px) {
+  .profile {
+    max-width: calc(100% - 19px*2);
+    margin: 0 auto;
+  }
+}
 @media screen and (max-width: 740px) {
   .profile {
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 1fr;
     grid-template-areas:
-    "image media"
-    ". button";
+    "media"
+    "button";
     grid-auto-rows: min-content;
   }
 }
 
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
   .profile {
     min-height: 286px;
     grid-template-columns: 1fr;
@@ -31,7 +37,7 @@
     "button";
     grid-auto-rows: min-content;
   }
-  }
+  } */
 
 
 

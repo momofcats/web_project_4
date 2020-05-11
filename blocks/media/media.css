@@ -7,10 +7,15 @@
 
 .media {
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   margin: 0;
   padding: 0;
   list-style-type: none;
   grid-area: media;
+  align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .media {
+    flex-direction: column;
+  }
 }
