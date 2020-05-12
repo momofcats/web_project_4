@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
     <title>Around The U.S.</title>
   </head>
   <body class="page">
@@ -13,11 +13,18 @@
     <main class="content">
       <section class="profile page__section">
         <div class="media">
-          <img src="images/Cousteau.png" alt="profile image" class="media__image">
+          <img
+            src="images/Cousteau.png"
+            alt="profile image"
+            class="media__image"
+          >
           <ul class="media__body">
             <li class="media__item">
               <h1 class="media__name js-user-name">Jacques Cousteau</h1>
-              <button class="media__btn button js-edit-btn" type="button"></button>
+              <button
+                class="media__btn button js-edit-btn"
+                type="button"
+              ></button>
             </li>
             <li class="media__item js-user-job">Explorer</li>
           </ul>
@@ -27,7 +34,11 @@
       <ul class="gallery page__section">
         <li class="gallery__item">
           <div class="card">
-            <img src="images/yosemite.png" alt="Yosemite valley" class="card__img">
+            <img
+              src="images/yosemite.png"
+              alt="Yosemite valley"
+              class="card__img"
+            >
             <h2 class="card__title">Yosemite Valley</h2>
             <button class="card__btn"></button>
           </div>
@@ -41,28 +52,44 @@
         </li>
         <li class="gallery__item">
           <div class="card">
-            <img src="images/bald_mountains.png" alt="mountains" class="card__img">
+            <img
+              src="images/bald_mountains.png"
+              alt="mountains"
+              class="card__img"
+            >
             <h2 class="card__title">Bald Mountains</h2>
             <button class="card__btn"></button>
           </div>
         </li>
         <li class="gallery__item">
           <div class="card">
-            <img src="images/latemar.png" alt="mountains sunrise" class="card__img">
+            <img
+              src="images/latemar.png"
+              alt="mountains sunrise"
+              class="card__img"
+            >
             <h2 class="card__title">Latemar</h2>
             <button class="card__btn"></button>
           </div>
         </li>
         <li class="gallery__item">
           <div class="card">
-            <img src="images/vanoise.png" alt="mountain lake" class="card__img">
+            <img
+              src="images/vanoise.png"
+              alt="mountain lake"
+              class="card__img"
+            >
             <h2 class="card__title">Vanois National...</h2>
             <button class="card__btn"></button>
           </div>
         </li>
         <li class="gallery__item">
           <div class="card">
-            <img src="images/lago_di_braies.png" alt="boats on lake" class="card__img">
+            <img
+              src="images/lago_di_braies.png"
+              alt="boats on lake"
+              class="card__img"
+            >
             <h2 class="card__title">Lago di Braies</h2>
             <button class="card__btn"></button>
           </div>
@@ -70,19 +97,32 @@
       </ul>
     </main>
     <footer class="footer page__section">
-      <p class="footer__copyright">&#169 2020 Around The U.S.</p>
+      <p class="footer__copyright">&#169; 2020 Around The U.S.</p>
     </footer>
     <div class="popup js-popup">
       <div class="popup__container">
-        <button class="popup__btn-close button js-close-btn" type="button"></button>
+        <button
+          class="popup__btn-close button js-close-btn"
+          type="button"
+        ></button>
         <form class="form js-form" action="#">
           <h2 class="form__title">Edit profile</h2>
-          <input type="text" class="form__input" name="name" placeholder="Name">
-          <input type="text" class="form__input" name="job" placeholder="About me">
+          <input
+            type="text"
+            class="form__input"
+            name="name"
+            placeholder="Name"
+          >
+          <input
+            type="text"
+            class="form__input"
+            name="job"
+            placeholder="About me"
+          >
           <button class="form__submit-btn" type="submit">Save</button>
         </form>
       </div>
     </div>
     <script src="scripts/script.js"></script>
   </body>
-  </html>
+</html>

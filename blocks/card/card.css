@@ -5,8 +5,7 @@
 .card {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  background: #FFFFFF;
+  background: #fff;
   border-radius: 10px;
   justify-content: space-between;
 }
