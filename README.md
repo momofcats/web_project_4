@@ -11,6 +11,7 @@
 - [Link to the project in Figma](https://www.figma.com/file/xM9rNsdK4iNcFJmDZho3Aw/Sprint-3%3A-From-Portland-to-Portland-%2F-desktop-%2B-mobile?node-id=500%3A0)
 
 ## Link
+[Link to github pages](https://momofcats.github.io/web_project_4/index.html)
 
 ## Description of the project and its functionality
 The project is a part of a Practicum curriculum that is teaching students advanced HTML, CSS and adaptive web design and basic javascript to manipulate DOM. Additionally, the project is teaching implementation of the BEM convention to a project.
