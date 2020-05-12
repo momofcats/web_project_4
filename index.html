@@ -16,10 +16,10 @@
           <img src="images/Cousteau.png" alt="profile image" class="media__image">
           <ul class="media__body">
             <li class="media__item">
-              <h1 class="media__name">Jacques Cousteau</h1>
-              <button class="media__btn button" type="button"></button>
+              <h1 class="media__name js-user-name">Jacques Cousteau</h1>
+              <button class="media__btn button js-edit-btn" type="button"></button>
             </li>
-            <li class="media__item">Explorer</li>
+            <li class="media__item"><span class="js-user-job">Explorer</span></li>
           </ul>
         </div>
         <button class="profile__btn button" type="button"></button>
@@ -72,13 +72,13 @@
     <footer class="footer page__section">
       <p class="footer__copyright">&#169 2020 Around The U.S.</p>
     </footer>
-    <div class="popup">
+    <div class="popup js-popup">
       <div class="popup__container">
-        <button class="popup__btn-close button" type="button"></button>
-        <form class="form" action="#">
+        <button class="popup__btn-close button js-close-btn" type="button"></button>
+        <form class="form js-form" action="#">
           <h2 class="form__title">Edit profile</h2>
-          <input type="text" class="form__input" placeholder="Name">
-          <input type="text" class="form__input" placeholder="About me">
+          <input type="text" class="form__input" name="name" placeholder="Name">
+          <input type="text" class="form__input" name="job" placeholder="About me">
           <button class="form__submit-btn" type="submit">Save</button>
         </form>
       </div>

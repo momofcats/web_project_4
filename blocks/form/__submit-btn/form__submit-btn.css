@@ -8,6 +8,8 @@
     line-height: 2.5;
     margin-top: 48px;
     background-color: #000000;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
 
 .form__submit-btn:hover{
