@@ -31,7 +31,7 @@
         </div>
         <button class="profile__btn button" type="button"></button>
       </section>
-      <ul class="gallery page__section">
+      <ul class="gallery page__section js-gallery">
         <li class="gallery__item">
           <div class="card">
             <div
@@ -118,6 +118,15 @@
         </form>
       </div>
     </div>
+    <template class="js-card-template">
+      <li class="gallery__item">
+      <div class="card">
+        <div class="card__img js-card-img"></div>
+        <h2 class="card__title js-card-title"></h2>
+        <button class="card__btn"></button>
+      </div>
+      </li>
+    </template>
     <script src="scripts/script.js"></script>
   </body>
 </html>
