@@ -3,4 +3,8 @@
   font-size: 24px;
   color: #000;
   margin: 25px 0 21px 25px;
+  max-width: 74%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

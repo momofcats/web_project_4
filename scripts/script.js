@@ -4,8 +4,8 @@ const form = document.querySelector(".js-form");
 const closeBtn = popup.querySelector('.js-close-btn');
 const userName = document.querySelector('.js-user-name');
 const userJob = document.querySelector('.js-user-job');
-const inputName = popup.querySelector('input[name=name]');
-const inputJob = popup.querySelector('input[name=job]');
+const inputName = popup.querySelector('.js-input-name');
+const inputJob = popup.querySelector('.js-input-job');
 
 function togglePopup() {
   popup.classList.toggle('popup_visible');
