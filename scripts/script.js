@@ -35,6 +35,7 @@ const userName = document.querySelector('.js-user-name');
 const userJob = document.querySelector('.js-user-job');
 const inputName = popup.querySelector('.js-input-name');
 const inputJob = popup.querySelector('.js-input-job');
+const gallery = document.querySelector('.js-gallery');
 
 function togglePopup() {
   popup.classList.toggle('popup_visible');
@@ -60,10 +61,20 @@ form.addEventListener('submit', function (e) {
 });
 
 function addCard(nameValue,linkValue){
-  const cardTemplate = document.querySelector(".js-card-template");
+  const cardTemplate = document.querySelector(".js-card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector(".card__title js-card-title").textContent = nameValue;
-  cardElement.querySelector(".js-card-img").setAttribute("style","linkValue");
-
-
+  cardElement.querySelector('.js-card-title').textContent = nameValue;
+  cardElement.querySelector('.js-card-img').style.backgroundImage = linkValue;
+  gallery.append(cardElement);
 }
+
+
+function renderGallery(arr){
+  arr.forEach(card => {
+    nameValue = card.name;
+    linkValue = `url('${card.link}')`;
+    addCard(nameValue,linkValue);
+  });
+}
+
+renderGallery(initialCards);
