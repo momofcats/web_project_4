@@ -28,29 +28,41 @@ const initialCards = [
 
 
 const popup = document.querySelector('.js-popup');
+const addPhotoPopup = document.querySelector('.js-add-photo');
 const editBtn = document.querySelector('.js-edit-btn');
 const form = document.querySelector(".js-form");
 const closeBtn = popup.querySelector('.js-close-btn');
+const closeBtnPhoto = addPhotoPopup.querySelector('.js-close-photo');
 const userName = document.querySelector('.js-user-name');
 const userJob = document.querySelector('.js-user-job');
 const inputName = popup.querySelector('.js-input-name');
 const inputJob = popup.querySelector('.js-input-job');
 const gallery = document.querySelector('.js-gallery');
+const addBtn = document.querySelector('.js-add-btn');
 
-function togglePopup() {
-  popup.classList.toggle('popup_visible');
-}
 
-editBtn.addEventListener('click', function () {
+editBtn.addEventListener('click', function() {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
-  togglePopup();
+  popup.classList.add('popup_visible');
+});
+
+addBtn.addEventListener('click',function(){
+  addPhotoPopup.classList.add('popup_visible');
 });
 
 closeBtn.addEventListener('click', function () {
   inputName.value = '';
   inputJob.value = '';
-  togglePopup();
+  if (popup.classList.contains('popup_visible')){
+    popup.classList.remove('popup_visible');
+  }
+});
+
+closeBtnPhoto.addEventListener('click', function(){
+  if (addPhotoPopup.classList.contains('popup_visible')){
+    addPhotoPopup.classList.remove('popup_visible');
+  }
 });
 
 form.addEventListener('submit', function (e) {

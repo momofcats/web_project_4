@@ -29,7 +29,7 @@
             <p class="media__job js-user-job">Explorer</p>
           </div>
         </div>
-        <button class="profile__btn button" type="button"></button>
+        <button class="profile__btn button js-add-btn" type="button"></button>
       </section>
       <ul class="gallery page__section js-gallery">
       </ul>
@@ -61,6 +61,30 @@
         </form>
       </div>
     </div>
+      <div class="popup js-add-photo">
+        <div class="popup__container">
+          <button
+            class="popup__btn-close button js-close-photo"
+            type="button"
+          ></button>
+          <form class="form js-form" action="#">
+            <h2 class="form__title">New Place</h2>
+            <input
+              type="text"
+              class="form__input js-input-name"
+              name="title"
+              placeholder="Title"
+            >
+            <input
+              type="text"
+              class="form__input js-input-job"
+              name="link"
+              placeholder="Image link"
+            >
+            <button class="form__submit-btn" type="submit">Create</button>
+          </form>
+        </div>
+      </div>
     <template class="js-card-template">
       <li class="gallery__item">
       <div class="card">
