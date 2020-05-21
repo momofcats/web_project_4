@@ -80,6 +80,7 @@ cardForm.addEventListener('submit',function(ev){
   card.name = inputTitle.value;
   card.link = inputLink.value;
   initialCards.unshift(card);
+  clearGallery();
   renderGallery(initialCards);
   togglePopup(popupPhoto);
   console.log(initialCards);
@@ -102,4 +103,11 @@ function renderGallery(arr){
   });
 }
 
+function clearGallery(){
+  const cards = document.querySelectorAll('.js-gallery-item');
+  cards.forEach(card => {
+    card.remove();
+  })
+
+}
 renderGallery(initialCards);
