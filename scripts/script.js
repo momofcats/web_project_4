@@ -30,11 +30,16 @@ const page = document.querySelector('.js-page');
 const popupProfile = document.querySelector('.js-popup-profile');
 const popupPhoto = document.querySelector('.js-popup-photo');
 const editBtn = document.querySelector('.js-edit-btn');
-const form = document.querySelector(".js-form");
+const profileForm = document.querySelector(".js-profile-form");
+const cardForm = document.querySelector('.js-card-form');
 const userName = document.querySelector('.js-user-name');
 const userJob = document.querySelector('.js-user-job');
-const inputName = document.querySelector('.js-input-name');
-const inputJob = document.querySelector('.js-input-job');
+const cardTitle = document.querySelector('.js-card-title');
+const cardLink = document.querySelector('.js-card-link');
+const inputName = profileForm.querySelector('.js-input-name');
+const inputJob = profileForm.querySelector('.js-input-job');
+const inputTitle = cardForm.querySelector('.js-input-title');
+const inputLink = cardForm.querySelector('.js-input-link');
 const gallery = document.querySelector('.js-gallery');
 const addBtn = document.querySelector('.js-add-btn');
 
@@ -62,14 +67,25 @@ page.addEventListener('click',function(ev){
 
 })
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+profileForm.addEventListener('submit', function (ev) {
+  ev.preventDefault();
   userName.textContent = inputName.value;
   userJob.textContent = inputJob.value;
-  togglePopup();
+  togglePopup(popupProfile);
 });
 
-function addCard(nameValue,linkValue){
+cardForm.addEventListener('submit',function(ev){
+  ev.preventDefault();
+  const card = {};
+  card.name = inputTitle.value;
+  card.link = inputLink.value;
+  initialCards.unshift(card);
+  renderGallery(initialCards);
+  togglePopup(popupPhoto);
+  console.log(initialCards);
+})
+
+function createCard(nameValue,linkValue){
   const cardTemplate = document.querySelector(".js-card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.js-card-title').textContent = nameValue;
@@ -82,7 +98,7 @@ function renderGallery(arr){
   arr.forEach(card => {
     nameValue = card.name;
     linkValue = `url('${card.link}')`;
-    addCard(nameValue,linkValue);
+    createCard(nameValue,linkValue);
   });
 }
 
