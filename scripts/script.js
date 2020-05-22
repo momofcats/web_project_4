@@ -55,6 +55,9 @@ editBtn.addEventListener('click', function() {
 });
 
 addBtn.addEventListener('click',function(){
+  inputTitle.value = '';
+  inputLink.value = '';
+
   togglePopup(popupPhoto);
 });
 
@@ -104,10 +107,7 @@ function renderGallery(arr){
 }
 
 function clearGallery(){
-  const cards = document.querySelectorAll('.js-gallery-item');
-  cards.forEach(card => {
-    card.remove();
-  })
+  gallery.innerHTML = '';
 
 }
 renderGallery(initialCards);
