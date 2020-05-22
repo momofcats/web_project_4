@@ -43,9 +43,32 @@ const inputLink = cardForm.querySelector('.js-input-link');
 const gallery = document.querySelector('.js-gallery');
 const addBtn = document.querySelector('.js-add-btn');
 
-
 function togglePopup(element){
   element.classList.toggle('popup_visible');
+}
+
+function createCard(nameValue,linkValue){
+  const cardTemplate = document.querySelector(".js-card-template").content;
+  const cardElement = cardTemplate.cloneNode(true);
+  cardElement.querySelector('.js-card-title').textContent = nameValue;
+  cardElement.querySelector('.js-card-img').style.backgroundImage = linkValue;
+  cardElement.querySelector('.js-like-btn').addEventListener('click', function(ev){
+    const target = ev.target;
+    target.classList.toggle('card__like_active');
+  });
+  gallery.append(cardElement);
+}
+
+function renderGallery(arr){
+  arr.forEach(card => {
+    nameValue = card.name;
+    linkValue = `url('${card.link}')`;
+    createCard(nameValue,linkValue);
+  });
+}
+
+function clearGallery(){
+  gallery.innerHTML = '';
 }
 
 editBtn.addEventListener('click', function() {
@@ -87,27 +110,6 @@ cardForm.addEventListener('submit',function(ev){
   renderGallery(initialCards);
   togglePopup(popupPhoto);
   console.log(initialCards);
-})
+});
 
-function createCard(nameValue,linkValue){
-  const cardTemplate = document.querySelector(".js-card-template").content;
-  const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.js-card-title').textContent = nameValue;
-  cardElement.querySelector('.js-card-img').style.backgroundImage = linkValue;
-  gallery.append(cardElement);
-}
-
-
-function renderGallery(arr){
-  arr.forEach(card => {
-    nameValue = card.name;
-    linkValue = `url('${card.link}')`;
-    createCard(nameValue,linkValue);
-  });
-}
-
-function clearGallery(){
-  gallery.innerHTML = '';
-
-}
 renderGallery(initialCards);

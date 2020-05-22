@@ -1,10 +1,10 @@
-.card__btn {
+.card__like {
   border-style: none;
   background-color: white;
   align-self: center;
   width: 21px;
   height: 18px;
-  background-image: url(../../../images/heart.svg);
+  background-image: url('../../../images/heart.svg');
   background-repeat: no-repeat;
   margin-right: 21px;
 }
