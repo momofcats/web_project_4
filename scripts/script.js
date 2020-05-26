@@ -42,12 +42,13 @@ const inputTitle = cardForm.querySelector('.js-input-title');
 const inputLink = cardForm.querySelector('.js-input-link');
 const gallery = document.querySelector('.js-gallery');
 const addBtn = document.querySelector('.js-add-btn');
+const delBtn = document.querySelector('.js-del-btn');
 
 function togglePopup(element){
   element.classList.toggle('popup_visible');
 }
 
-function createCard(nameValue,linkValue){
+function createCard(nameValue,linkValue, i){
   const cardTemplate = document.querySelector(".js-card-template").content;
   const cardElement = cardTemplate.cloneNode(true);
   cardElement.querySelector('.js-card-title').textContent = nameValue;
@@ -56,13 +57,15 @@ function createCard(nameValue,linkValue){
     const target = ev.target;
     target.classList.toggle('card__like_active');
   });
+  cardElement.querySelector('.js-del-btn').dataset.index = i;
   gallery.append(cardElement);
 }
 
-function renderGallery(arr){
+function renderGallery(arr,index){
   arr.forEach(card => {
     nameValue = card.name;
     linkValue = `url('${card.link}')`;
+    i = index;
     createCard(nameValue,linkValue);
   });
 }
@@ -71,6 +74,13 @@ function clearGallery(){
   gallery.innerHTML = '';
 }
 
+function setIndex(arr,i){
+  arr.map(card => card.index = i);
+}
+
+function delCard(arr,index){
+  arr.splice(index,1);
+}
 editBtn.addEventListener('click', function() {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
@@ -112,4 +122,15 @@ cardForm.addEventListener('submit',function(ev){
   console.log(initialCards);
 });
 
+gallery.addEventListener('click',function(ev){
+  const el = ev.target;
+  if(!el.classList.contains('js-del-btn')){
+    return;
+  }
+  const index = initialCards.indexOf(el.parentElement);
+  //todo need to figure out the index of card
+  delCard(initialCards,index);
+  clearGallery();
+  renderGallery(initialCards);
+})
 renderGallery(initialCards);
