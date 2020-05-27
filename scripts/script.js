@@ -1,25 +1,33 @@
+let id = 0;
+
 const initialCards = [
   {
+      id: id++,
       name: "Yosemite Valley",
       link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
   },
   {
+      id: id++,
       name: "Lake Louise",
       link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
   },
   {
+      id: id++,
       name: "Bald Mountains",
       link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
   },
   {
+      id: id++,
       name: "Latemar",
       link: "https://code.s3.yandex.net/web-code/latemar.jpg"
   },
   {
+      id: id++,
       name: "Vanois National Park",
       link: "https://code.s3.yandex.net/web-code/vanois.jpg"
   },
   {
+      id: id++,
       name: "Lago di Braies",
       link: "https://code.s3.yandex.net/web-code/lago.jpg"
   }
@@ -33,7 +41,7 @@ const cardTemplate = document.querySelector(".js-card-template").content;
 const popupProfile = document.querySelector('.js-popup-profile');
 const profileForm = popupProfile.querySelector('.js-form');
 
-const popupCard = document.querySelector('.js-popup-photo');
+const popupCard = document.querySelector('.js-popup-photo-form');
 const cardForm = popupCard.querySelector('.js-form');
 
 const gallery = document.querySelector('.js-gallery');
@@ -65,7 +73,7 @@ function togglePopup(element){
   element.classList.toggle('popup_visible');
 }
 
-function createCard(card,index){
+function createCard(card){
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.js-card-img');
   const cardTitle = cardElement.querySelector('.js-card-title');
@@ -76,7 +84,7 @@ function createCard(card,index){
 
   cardImage.style.backgroundImage = `url('${card.link}')`;
 
-  cardDelBtn.dataset.index = index;
+  cardDelBtn.dataset.id = card.id;
 
   cardLikeBtn.addEventListener('click', function(ev){
     const target = ev.target;
@@ -85,17 +93,19 @@ function createCard(card,index){
 
   cardDelBtn.addEventListener('click',function(ev){
     const element = ev.target;
-    element.parentElement.remove();
+    const identifier = parseInt(element.dataset.id,10);
+    const index = initialCards.findIndex((card) => card.id === identifier);
     initialCards.splice(index,1);
-    console.log(initialCards);
+    element.parentElement.remove();
+
   });
   return cardElement;
 }
 
 
 function renderGallery(cards){
-  cards.forEach((card,index)=>{
-    gallery.prepend(createCard(card,index));
+  cards.forEach((card)=>{
+    gallery.prepend(createCard(card));
   });
 }
 
@@ -135,12 +145,12 @@ profileForm.addEventListener('submit', function (ev) {
 cardForm.addEventListener('submit',function(ev){
   ev.preventDefault();
   const card = {
+    id: id++,
     name: inputTitle.value,
     link: inputLink.value
   };
   initialCards.push(card);
-  const index = initialCards.indexOf(card);
-  const cardInstance = createCard(card,index);
+  const cardInstance = createCard(card);
   gallery.prepend(cardInstance);
   togglePopup(popupCard);
   console.log(initialCards);
