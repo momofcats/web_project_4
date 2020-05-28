@@ -5,3 +5,10 @@
   margin: 0;
   padding-bottom: 24px;
 }
+
+@media screen and (max-width: 480px){
+  .form__title {
+    font-size: 18px;
+    padding-bottom: 0;
+  }
+}

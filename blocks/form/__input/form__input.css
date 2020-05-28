@@ -9,3 +9,10 @@
   padding-top: 30px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
+
+
+@media screen and (max-width: 480px){
+  .form__input {
+    font-size: 12px;
+  }
+}

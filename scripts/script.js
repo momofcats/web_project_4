@@ -46,12 +46,16 @@ const cardForm = popupCard.querySelector('.js-form');
 
 const gallery = document.querySelector('.js-gallery');
 
+const popupPicture = document.querySelector('.js-popup-picture');
+
 //buutons and DOM elements
 const editBtn = document.querySelector('.js-edit-btn');
 const profileFormCloseBtn = popupProfile.querySelector('.js-close-btn');
 
 const addBtn = document.querySelector('.js-add-btn');
 const cardFormCloseBtn = popupCard.querySelector('.js-close-btn');
+
+const picturePopupCloseBtn = popupPicture.querySelector('.js-close-btn');
 
 //form data
 const inputName = profileForm.querySelector('.js-input-name');
@@ -67,6 +71,9 @@ const userJob = document.querySelector('.js-user-job');
 const cardTitle = document.querySelector('.js-card-title');
 const cardLink = document.querySelector('.js-card-link');
 
+//popup data
+const popupImage = popupPicture.querySelector('.js-popup-image')
+const popupTitle = popupPicture.querySelector('.js-popup-title');
 
 
 function togglePopup(element){
@@ -79,7 +86,7 @@ function createCard(card){
   const cardTitle = cardElement.querySelector('.js-card-title');
   const cardLikeBtn = cardElement.querySelector('.js-like-btn');
   const cardDelBtn = cardElement.querySelector('.js-del-btn');
-
+  const cardInstance = cardElement.querySelector('.js-gallery-item');
   cardTitle.textContent = card.name;
 
   cardImage.style.backgroundImage = `url('${card.link}')`;
@@ -99,6 +106,11 @@ function createCard(card){
     element.parentElement.remove();
 
   });
+  cardInstance.addEventListener('click', function(){
+    popupImage.src = card.link;
+    popupTitle.textContent = card.name;
+    togglePopup(popupPicture);
+  })
   return cardElement;
 }
 
@@ -156,6 +168,12 @@ cardForm.addEventListener('submit',function(ev){
   console.log(initialCards);
 
 });
+
+picturePopupCloseBtn.addEventListener('click', function(){
+  togglePopup(popupPicture);
+})
+
+
 
 renderGallery(initialCards);
 
