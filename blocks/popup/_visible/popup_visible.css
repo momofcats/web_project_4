@@ -1,4 +1,18 @@
 /*this overwrites a default display value of a popup*/
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 .popup.popup_visible {
-  display: flex;
+  animation: fade-in 250ms ease-in;
+  visibility: visible;
+  opacity: 1;
 }

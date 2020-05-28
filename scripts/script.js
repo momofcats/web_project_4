@@ -1,37 +1,3 @@
-let id = 0;
-
-const initialCards = [
-  {
-      id: id++,
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  },
-  {
-      id: id++,
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-      id: id++,
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-      id: id++,
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-      id: id++,
-      name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-  },
-  {
-      id: id++,
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
 
 // templates
 const cardTemplate = document.querySelector(".js-card-template").content;
@@ -72,12 +38,55 @@ const cardTitle = document.querySelector('.js-card-title');
 const cardLink = document.querySelector('.js-card-link');
 
 //popup data
-const popupImage = popupPicture.querySelector('.js-popup-image')
+const popupImage = popupPicture.querySelector('.js-popup-image');
 const popupTitle = popupPicture.querySelector('.js-popup-title');
+
+
+let id = 0;
+
+const initialCards = [
+  {
+      id: id++,
+      name: "Yosemite Valley",
+      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+      id: id++,
+      name: "Lake Louise",
+      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+      id: id++,
+      name: "Bald Mountains",
+      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+      id: id++,
+      name: "Latemar",
+      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+      id: id++,
+      name: "Vanois National Park",
+      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+  },
+  {
+      id: id++,
+      name: "Lago di Braies",
+      link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+
 
 
 function togglePopup(element){
   element.classList.toggle('popup_visible');
+}
+
+
+function toggleAnimation(element){
+  element.classList.toggle('popup_fade-out');
+
 }
 
 function createCard(card){
@@ -139,11 +148,14 @@ addBtn.addEventListener('click',function(){
 
 profileFormCloseBtn.addEventListener('click',function(){
   togglePopup(popupProfile);
+  toggleAnimation(popupProfile);
+
 });
 
 
 cardFormCloseBtn.addEventListener('click',function(){
   togglePopup(popupCard);
+  toggleAnimation(popupCard);
 });
 
 
@@ -171,6 +183,7 @@ cardForm.addEventListener('submit',function(ev){
 
 picturePopupCloseBtn.addEventListener('click', function(){
   togglePopup(popupPicture);
+  toggleAnimation(popupPicture);
 })
 
 
