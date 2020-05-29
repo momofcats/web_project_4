@@ -117,6 +117,7 @@ function createCard(card){
     popupImage.src = '';
     popupTitle.textContent = '';
     popupImage.src = card.link;
+    popupImage.alt = card.name;
     popupTitle.textContent = card.name;
     togglePopup(popupPicture);
     animateFadeOut(popupPicture);
