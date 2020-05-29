@@ -113,13 +113,9 @@ function createCard(card){
 
   });
 
-  cardInstance.addEventListener('click', function(ev){
+  cardImage.addEventListener('click', function(){
     popupImage.src = '';
     popupTitle.textContent = '';
-    const target = ev.target;
-    if (target.classList.contains('js-del-btn') || target.classList.contains('js-like-btn') ){
-      return;
-    }
     popupImage.src = card.link;
     popupTitle.textContent = card.name;
     togglePopup(popupPicture);
