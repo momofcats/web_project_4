@@ -2,9 +2,8 @@
   font-weight: 900;
   font-size: 24px;
   color: #000;
-  margin-left: 21px;
-  max-width: 73%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  margin: 0;
 }
