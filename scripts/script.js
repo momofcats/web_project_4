@@ -84,9 +84,8 @@ function togglePopup(element){
 }
 
 
-function toggleAnimation(element){
-  element.classList.toggle('popup_fade-out');
-
+function fadeOutPopup(element){
+  element.classList.add('popup_fade-out');
 }
 
 function createCard(card){
@@ -112,10 +111,17 @@ function createCard(card){
     const identifier = parseInt(element.dataset.id,10);
     const index = initialCards.findIndex((card) => card.id === identifier);
     initialCards.splice(index,1);
-    element.parentElement.remove();
+    cardInstance.remove();
 
   });
-  cardInstance.addEventListener('click', function(){
+  cardInstance.addEventListener('click', function(ev){
+    popupImage.src = '';
+    popupTitle.textContent = '';
+    const target = ev.target;
+    if (target.classList.contains('js-del-btn') || target.classList.contains('js-like-btn') ){
+      return;
+    }
+
     popupImage.src = card.link;
     popupTitle.textContent = card.name;
     togglePopup(popupPicture);
@@ -148,14 +154,14 @@ addBtn.addEventListener('click',function(){
 
 profileFormCloseBtn.addEventListener('click',function(){
   togglePopup(popupProfile);
-  toggleAnimation(popupProfile);
+  // toggleAnimation(popupProfile);
 
 });
 
 
 cardFormCloseBtn.addEventListener('click',function(){
   togglePopup(popupCard);
-  toggleAnimation(popupCard);
+  // toggleAnimation(popupCard);
 });
 
 
@@ -183,7 +189,7 @@ cardForm.addEventListener('submit',function(ev){
 
 picturePopupCloseBtn.addEventListener('click', function(){
   togglePopup(popupPicture);
-  toggleAnimation(popupPicture);
+  // fadeOutPopup(popupPicture)
 })
 
 

@@ -10,5 +10,5 @@
 }
 
 .popup_fade-out {
-  animation: fade-out 250ms ease-out;
+  animation: fade-out 1s ease-out;
 }
