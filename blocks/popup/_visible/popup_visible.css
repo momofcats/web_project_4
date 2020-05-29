@@ -3,4 +3,5 @@
   opacity: 1;
   visibility: visible;
   transition: visibility 250ms, opacity 250ms ease-in;
+  pointer-events: auto;
 }
