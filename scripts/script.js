@@ -105,10 +105,6 @@ function createCard(card){
   });
 
   cardDelBtn.addEventListener('click',function(ev){
-    const element = ev.target;
-    const identifier = parseInt(element.dataset.id,10);
-    const index = initialCards.findIndex((card) => card.id === identifier);
-    initialCards.splice(index,1);
     cardInstance.remove();
 
   });
@@ -174,17 +170,15 @@ cardForm.addEventListener('submit',function(ev){
     name: inputTitle.value,
     link: inputLink.value
   };
-  initialCards.push(card);
   const cardInstance = createCard(card);
   gallery.prepend(cardInstance);
   togglePopup(popupCard);
-  console.log(initialCards);
 
 });
 
 picturePopupCloseBtn.addEventListener('click', function(){
   togglePopup(popupPicture);
-  // fadeOutPopup(popupPicture)
+  animateFadeOut(popupPicture);
 })
 
 renderGallery(initialCards);
