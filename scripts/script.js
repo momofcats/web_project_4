@@ -78,13 +78,12 @@ const initialCards = [
 ];
 
 
-
 function togglePopup(element){
   element.classList.toggle('popup_visible');
 }
 
 
-function fadeOutPopup(element){
+function animateFadeOut(element){
   element.classList.add('popup_fade-out');
 }
 
@@ -95,10 +94,9 @@ function createCard(card){
   const cardLikeBtn = cardElement.querySelector('.js-like-btn');
   const cardDelBtn = cardElement.querySelector('.js-del-btn');
   const cardInstance = cardElement.querySelector('.js-gallery-item');
+
   cardTitle.textContent = card.name;
-
   cardImage.style.backgroundImage = `url('${card.link}')`;
-
   cardDelBtn.dataset.id = card.id;
 
   cardLikeBtn.addEventListener('click', function(ev){
@@ -114,6 +112,7 @@ function createCard(card){
     cardInstance.remove();
 
   });
+
   cardInstance.addEventListener('click', function(ev){
     popupImage.src = '';
     popupTitle.textContent = '';
@@ -121,10 +120,10 @@ function createCard(card){
     if (target.classList.contains('js-del-btn') || target.classList.contains('js-like-btn') ){
       return;
     }
-
     popupImage.src = card.link;
     popupTitle.textContent = card.name;
     togglePopup(popupPicture);
+    animateFadeOut(popupPicture);
   })
   return cardElement;
 }
@@ -154,14 +153,13 @@ addBtn.addEventListener('click',function(){
 
 profileFormCloseBtn.addEventListener('click',function(){
   togglePopup(popupProfile);
-  // toggleAnimation(popupProfile);
-
+  animateFadeOut(popupProfile);
 });
 
 
 cardFormCloseBtn.addEventListener('click',function(){
   togglePopup(popupCard);
-  // toggleAnimation(popupCard);
+  animateFadeOut(popupCard);
 });
 
 
@@ -191,8 +189,6 @@ picturePopupCloseBtn.addEventListener('click', function(){
   togglePopup(popupPicture);
   // fadeOutPopup(popupPicture)
 })
-
-
 
 renderGallery(initialCards);
 

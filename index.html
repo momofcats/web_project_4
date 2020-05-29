@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
     <title>Around The U.S.</title>
@@ -31,8 +31,7 @@
         </div>
         <button class="profile__btn button js-add-btn" type="button"></button>
       </section>
-      <ul class="gallery page__section js-gallery">
-      </ul>
+      <ul class="gallery page__section js-gallery"></ul>
     </main>
     <footer class="footer page__section">
       <p class="footer__copyright">&#169; 2020 Around The U.S.</p>
@@ -41,8 +40,8 @@
       <div class="popup__container">
         <button
           class="popup__btn-close button js-close-btn"
-          type="button"
-        ></button>
+          type="button">
+        </button>
         <form class="form js-form" action="#">
           <h2 class="form__title">Edit profile</h2>
           <input
@@ -61,45 +60,44 @@
         </form>
       </div>
     </div>
-      <div class="popup popup_background_light js-popup-photo-form">
-        <div class="popup__container">
-          <button
-            class="popup__btn-close button js-close-btn"
-            type="button"
-          ></button>
-          <form class="form js-form" action="#">
-            <h2 class="form__title">New Place</h2>
-            <input
-              type="text"
-              class="form__input js-input-title"
-              name="title"
-              placeholder="Title"
-            >
-            <input
-              type="text"
-              class="form__input js-input-link"
-              name="link"
-              placeholder="Image link"
-            >
-            <button class="form__submit-btn" type="submit">Create</button>
-          </form>
-        </div>
+    <div class="popup popup_background_light js-popup-photo-form">
+      <div class="popup__container">
+        <button
+          class="popup__btn-close button js-close-btn"
+          type="button">
+        </button>
+        <form class="form js-form" action="#">
+          <h2 class="form__title">New Place</h2>
+          <input
+            type="text"
+            class="form__input js-input-title"
+            name="title"
+            placeholder="Title"
+          >
+          <input
+            type="text"
+            class="form__input js-input-link"
+            name="link"
+            placeholder="Image link"
+          >
+          <button class="form__submit-btn" type="submit">Create</button>
+        </form>
       </div>
-      <div class="popup popup_background_dark js-popup-picture">
-        <div class="popup__container popup__container_picture">
-          <button
-            class="popup__btn-close popup__btn-close_position button js-close-btn"
-            type="button"
-          ></button>
-          <img class="popup__image js-popup-image">
-          <h2 class="popup__title js-popup-title"></h2>
+    </div>
+    <div class="popup popup_background_dark js-popup-picture">
+      <div class="popup__container popup__container_picture">
+        <button
+          class="popup__btn-close popup__btn-close_position button js-close-btn"
+          type="button">
+      </button>
+        <img class="popup__image js-popup-image">
+        <h2 class="popup__title js-popup-title"></h2>
       </div>
     </div>
     <template class="js-card-template">
       <li class="js-gallery-item card">
         <button class="button card__del js-del-btn"></button>
-        <div class="card__img js-card-img">
-        </div>
+        <div class="card__img js-card-img"></div>
         <h2 class="card__title js-card-title"></h2>
         <button class="card__like js-like-btn button"></button>
       </li>
