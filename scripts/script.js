@@ -79,12 +79,12 @@ const initialCards = [
 
 
 function togglePopup(element){
-  element.classList.toggle('popup_visible');
+  element.classList.toggle('popup_role_show');
 }
 
 
 function animateFadeOut(element){
-  element.classList.add('popup_fade-out');
+  element.classList.add('popup_role_fade-out');
 }
 
 function createCard(card){

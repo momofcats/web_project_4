@@ -1,5 +1,5 @@
 
-.popup.popup_visible {
+.popup.popup_role_show {
   opacity: 1;
   visibility: visible;
   transition: visibility 250ms, opacity 250ms ease-in;
