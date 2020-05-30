@@ -1,6 +1,5 @@
-
 // templates
-const cardTemplate = document.querySelector(".js-card-template").content;
+const cardTemplate = document.querySelector('.js-card-template').content;
 
 //wrappers
 
@@ -34,60 +33,54 @@ const inputLink = cardForm.querySelector('.js-input-link');
 const userName = document.querySelector('.media__name');
 const userJob = document.querySelector('.media__job');
 
-const cardTitle = document.querySelector('.js-card-title');
-const cardLink = document.querySelector('.js-card-link');
-
 //popup data
 const popupImage = popupPicture.querySelector('.popup__image');
 const popupTitle = popupPicture.querySelector('.popup__title');
-
 
 let id = 0;
 
 const initialCards = [
   {
-      id: id++,
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    id: id++,
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
   {
-      id: id++,
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    id: id++,
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
   },
   {
-      id: id++,
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    id: id++,
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
   },
   {
-      id: id++,
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    id: id++,
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
   },
   {
-      id: id++,
-      name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+    id: id++,
+    name: "Vanois National Park",
+    link: "https://code.s3.yandex.net/web-code/vanois.jpg",
   },
   {
-      id: id++,
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
+    id: id++,
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
 ];
 
-
-function togglePopup(element){
-  element.classList.toggle('popup_role_show');
+function togglePopup(element) {
+  element.classList.toggle("popup_role_show");
 }
 
-
-function animateFadeOut(element){
-  element.classList.add('popup_role_fade-out');
+function animateFadeOut(element) {
+  element.classList.add("popup_role_fade-out");
 }
 
-function createCard(card){
+function createCard(card) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector('.card__img');
   const cardTitle = cardElement.querySelector('.card__title');
@@ -99,17 +92,16 @@ function createCard(card){
   cardImage.style.backgroundImage = `url('${card.link}')`;
   cardDelBtn.dataset.id = card.id;
 
-  cardLikeBtn.addEventListener('click', function(ev){
+  cardLikeBtn.addEventListener('click', function (ev) {
     const target = ev.target;
     target.classList.toggle('card__like_active');
   });
 
-  cardDelBtn.addEventListener('click',function(ev){
+  cardDelBtn.addEventListener('click', function () {
     cardInstance.remove();
-
   });
 
-  cardImage.addEventListener('click', function(){
+  cardImage.addEventListener('click', function () {
     popupImage.src = '';
     popupTitle.textContent = '';
     popupImage.src = card.link;
@@ -117,44 +109,37 @@ function createCard(card){
     popupTitle.textContent = card.name;
     togglePopup(popupPicture);
     animateFadeOut(popupPicture);
-  })
+  });
   return cardElement;
 }
 
-
-function renderGallery(cards){
-  cards.forEach((card)=>{
+function renderGallery(cards) {
+  cards.forEach((card) => {
     gallery.prepend(createCard(card));
   });
 }
 
-
-editBtn.addEventListener('click', function() {
+editBtn.addEventListener('click', function () {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
   togglePopup(popupProfile);
 });
 
-
-addBtn.addEventListener('click',function(){
+addBtn.addEventListener('click', function () {
   inputTitle.value = '';
   inputLink.value = '';
-
   togglePopup(popupCard);
 });
 
-
-profileFormCloseBtn.addEventListener('click',function(){
+profileFormCloseBtn.addEventListener('click', function () {
   togglePopup(popupProfile);
   animateFadeOut(popupProfile);
 });
 
-
-cardFormCloseBtn.addEventListener('click',function(){
+cardFormCloseBtn.addEventListener('click', function () {
   togglePopup(popupCard);
   animateFadeOut(popupCard);
 });
-
 
 profileForm.addEventListener('submit', function (ev) {
   ev.preventDefault();
@@ -163,26 +148,21 @@ profileForm.addEventListener('submit', function (ev) {
   togglePopup(popupProfile);
 });
 
-cardForm.addEventListener('submit',function(ev){
+cardForm.addEventListener('submit', function (ev) {
   ev.preventDefault();
   const card = {
     id: id++,
     name: inputTitle.value,
-    link: inputLink.value
+    link: inputLink.value,
   };
   const cardInstance = createCard(card);
   gallery.prepend(cardInstance);
   togglePopup(popupCard);
-
 });
 
-picturePopupCloseBtn.addEventListener('click', function(){
+picturePopupCloseBtn.addEventListener('click', function () {
   togglePopup(popupPicture);
   animateFadeOut(popupPicture);
-})
+});
 
 renderGallery(initialCards);
-
-
-
-

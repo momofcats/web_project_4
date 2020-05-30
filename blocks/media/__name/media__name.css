@@ -21,6 +21,6 @@
     padding-top: 15px;
     font-size: 22px;
     text-align: center;
-    max-width: calc(80vw - 19*2px);
+    max-width: calc(80vw - 19 * 2px);
   }
 }
