@@ -1,5 +1,7 @@
 .card__like {
-  border-style: none;
+  border: none;
+  padding: 0;
+  flex: none;
   background-color: white;
   align-self: center;
   width: 21px;
