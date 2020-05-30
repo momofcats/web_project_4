@@ -5,23 +5,23 @@ const cardTemplate = document.querySelector(".js-card-template").content;
 //wrappers
 
 const popupProfile = document.querySelector('.js-popup-profile');
-const profileForm = popupProfile.querySelector('.js-form');
+const profileForm = popupProfile.querySelector('.form');
 
 const popupCard = document.querySelector('.js-popup-photo-form');
-const cardForm = popupCard.querySelector('.js-form');
+const cardForm = popupCard.querySelector('.form');
 
-const gallery = document.querySelector('.js-gallery');
+const gallery = document.querySelector('.gallery');
 
 const popupPicture = document.querySelector('.js-popup-picture');
 
 //buutons and DOM elements
-const editBtn = document.querySelector('.js-edit-btn');
-const profileFormCloseBtn = popupProfile.querySelector('.js-close-btn');
+const editBtn = document.querySelector('.media__btn');
+const profileFormCloseBtn = popupProfile.querySelector('.popup__btn-close');
 
-const addBtn = document.querySelector('.js-add-btn');
-const cardFormCloseBtn = popupCard.querySelector('.js-close-btn');
+const addBtn = document.querySelector('.profile__btn');
+const cardFormCloseBtn = popupCard.querySelector('.popup__btn-close');
 
-const picturePopupCloseBtn = popupPicture.querySelector('.js-close-btn');
+const picturePopupCloseBtn = popupPicture.querySelector('.popup__btn-close');
 
 //form data
 const inputName = profileForm.querySelector('.js-input-name');
@@ -31,15 +31,15 @@ const inputTitle = cardForm.querySelector('.js-input-title');
 const inputLink = cardForm.querySelector('.js-input-link');
 
 //inputs
-const userName = document.querySelector('.js-user-name');
-const userJob = document.querySelector('.js-user-job');
+const userName = document.querySelector('.media__name');
+const userJob = document.querySelector('.media__job');
 
 const cardTitle = document.querySelector('.js-card-title');
 const cardLink = document.querySelector('.js-card-link');
 
 //popup data
-const popupImage = popupPicture.querySelector('.js-popup-image');
-const popupTitle = popupPicture.querySelector('.js-popup-title');
+const popupImage = popupPicture.querySelector('.popup__image');
+const popupTitle = popupPicture.querySelector('.popup__title');
 
 
 let id = 0;
@@ -89,11 +89,11 @@ function animateFadeOut(element){
 
 function createCard(card){
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector('.js-card-img');
-  const cardTitle = cardElement.querySelector('.js-card-title');
-  const cardLikeBtn = cardElement.querySelector('.js-like-btn');
-  const cardDelBtn = cardElement.querySelector('.js-del-btn');
-  const cardInstance = cardElement.querySelector('.js-gallery-item');
+  const cardImage = cardElement.querySelector('.card__img');
+  const cardTitle = cardElement.querySelector('.card__title');
+  const cardLikeBtn = cardElement.querySelector('.card__like');
+  const cardDelBtn = cardElement.querySelector('.card__del');
+  const cardInstance = cardElement.querySelector('.card');
 
   cardTitle.textContent = card.name;
   cardImage.style.backgroundImage = `url('${card.link}')`;
