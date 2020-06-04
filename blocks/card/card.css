@@ -3,12 +3,10 @@
 @import url('__img/card__img.css');
 @import url('__title/card__title.css');
 @import url('__del/card__del.css');
+@import url('__description-wrapper/card__description-wrapper.css');
 
 .card {
-  display: flex;
-  flex-wrap: wrap;
   background: #fff;
   border-radius: 10px;
-  justify-content: space-between;
   position: relative;
 }

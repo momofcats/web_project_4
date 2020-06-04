@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
     <title>Around The U.S.</title>
   </head>
-  <body class="page js-page">
+  <body class="page">
     <header class="header">
       <img src="images/logo.svg" alt="logo" class="header__logo">
     </header>
-    <main class="content">
+    <main>
       <section class="profile page__section">
         <div class="media">
           <img
@@ -20,18 +20,15 @@
           >
           <div class="media__body">
             <div class="media__item">
-              <h1 class="media__name js-user-name">Jacques Cousteau</h1>
-              <button
-                class="media__btn button js-edit-btn"
-                type="button"
-              ></button>
+              <h1 class="media__name">Jacques Cousteau</h1>
+              <button class="media__btn button" type="button"></button>
             </div>
-            <p class="media__job js-user-job">Explorer</p>
+            <p class="media__job">Explorer</p>
           </div>
         </div>
-        <button class="profile__btn button js-add-btn" type="button"></button>
+        <button class="profile__btn button" type="button"></button>
       </section>
-      <ul class="gallery page__section js-gallery"></ul>
+      <ul class="gallery page__section"></ul>
     </main>
     <footer class="footer page__section">
       <p class="footer__copyright">&#169; 2020 Around The U.S.</p>
@@ -86,21 +83,20 @@
       </div>
     </div>
     <div class="popup popup_background_dark js-popup-picture">
-      <div class="popup__container popup__container_picture">
-        <button
-          class="popup__btn-close popup__btn-close_position button js-close-btn"
-          type="button">
-      </button>
-        <img class="popup__image js-popup-image">
-        <h2 class="popup__title js-popup-title"></h2>
+      <div class="popup__container popup__container_type_picture">
+        <button class="popup__btn-close button" type="button"></button>
+        <img class="popup__image">
+        <h2 class="popup__title"></h2>
       </div>
     </div>
     <template class="js-card-template">
-      <li class="js-gallery-item card">
-        <button class="button card__del js-del-btn"></button>
-        <div class="card__img js-card-img"></div>
-        <h2 class="card__title js-card-title"></h2>
-        <button class="card__like js-like-btn button"></button>
+      <li class="card">
+        <button class="button card__del"></button>
+        <div class="card__img"></div>
+        <div class="card__description-wrapper">
+          <h2 class="card__title"></h2>
+          <button class="card__like button"></button>
+        </div>
       </li>
     </template>
     <script src="scripts/script.js"></script>

@@ -17,12 +17,11 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 480px) {
   .form__submit-btn {
     font-size: 14px;
     padding-top: 12px;
     padding-bottom: 12px;
     margin-top: 30px;
-
   }
 }
