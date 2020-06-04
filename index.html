@@ -39,15 +39,15 @@
           class="popup__btn-close button"
           type="button">
         </button>
-        <form class="form" action="#" name="profile form" novalidate>
+        <form class="form" action="#" name="profile" novalidate>
           <h2 class="form__title">Edit profile</h2>
-          <input id="text-input"
+          <input id="text-input" required pattern="[a-zA-Z ]{2,20}"
             type="text"
             class="form__input js-input-name"
             name="name"
             placeholder="Name"
           >
-          <span id="text-input-error" class="form__input-error">Please fill out this field.</span>
+          <span id="text-input-error" class="form__input-error"></span>
           <input
             type="text"
             class="form__input js-input-job"
