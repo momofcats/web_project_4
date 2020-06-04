@@ -172,13 +172,16 @@ renderGallery(initialCards);
 
 const formElement = document.querySelector('.form');
 const fromInput = formElement.querySelector('.form__input');
-const formError = formElement.querySelector(`#${formInput.id}-error`)
-const showInputError = (element) => {
+const formError = formElement.querySelector(`#${formInput.id}-error`);
+
+const showInputError = (element, formError) => {
   element.classList.add('form__input_type_error');
+  formError.classList.add('form__input-error_active');
 };
 
-const hideInputError = (element) => {
+const hideInputError = (element, formError) => {
   element.classList.remove('form__input_type_error');
+  formError.classList.remove('form__input-error_active');
 };
 
 const isValid = () => {
