@@ -41,19 +41,22 @@
         </button>
         <form class="form" action="#" name="profile" novalidate>
           <h2 class="form__title">Edit profile</h2>
-          <input id="text-input" required pattern="[a-zA-Z ]{2,20}"
+          <input id="name-input" required pattern="[a-zA-Z ]{2,40}"
             type="text"
             class="form__input js-input-name"
             name="name"
             placeholder="Name"
+            minlength="2" maxlength="40"
           >
-          <span id="text-input-error" class="form__input-error"></span>
-          <input
+          <span id="name-input-error" class="form__input-error"></span>
+          <input id="job-input" required
+          pattern="[a-zA-Z ]"
             type="text"
             class="form__input js-input-job"
             name="job"
-            placeholder="About me"
+            placeholder="About me" minlength="2" maxlength="200" pattern="[a-zA-Z ]{2,200}"
           >
+          <span id="job-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Save</button>
         </form>
       </div>
@@ -66,18 +69,20 @@
         </button>
         <form class="form" action="#" name="new place" novalidate>
           <h2 class="form__title">New Place</h2>
-          <input
+          <input id="title-input"
             type="text"
             class="form__input js-input-title"
             name="title"
-            placeholder="Title"
+            placeholder="Title" minlength="1" pattern="[a-zA-Z0-9]{1,30}"
           >
-          <input
+          <span id="title-input-error" class="form__input-error"></span>
+          <input id="link-input"
             type="url"
             class="form__input js-input-link"
             name="link"
             placeholder="Image link"
           >
+          <span id="link-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Create</button>
         </form>
       </div>
@@ -100,5 +105,6 @@
       </li>
     </template>
     <script src="scripts/script.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>
