@@ -42,14 +42,15 @@
           class="popup__btn-close button js-close-btn"
           type="button">
         </button>
-        <form class="form js-form" action="#">
+        <form class="form js-form" action="#" name="profile form" novalidate>
           <h2 class="form__title">Edit profile</h2>
-          <input
+          <input id="text-input"
             type="text"
             class="form__input js-input-name"
             name="name"
             placeholder="Name"
           >
+          <span id="text-input-error" class="form__input-error">Please fill out this field.</span>
           <input
             type="text"
             class="form__input js-input-job"
@@ -66,7 +67,7 @@
           class="popup__btn-close button js-close-btn"
           type="button">
         </button>
-        <form class="form js-form" action="#">
+        <form class="form js-form" action="#" name="new place" novalidate>
           <h2 class="form__title">New Place</h2>
           <input
             type="text"
@@ -75,7 +76,7 @@
             placeholder="Title"
           >
           <input
-            type="text"
+            type="url"
             class="form__input js-input-link"
             name="link"
             placeholder="Image link"

@@ -195,3 +195,27 @@ renderGallery(initialCards);
 
 
 
+const formElement = document.querySelector('.form');
+const fromInput = formElement.querySelector('.form__input');
+const formError = formElement.querySelector(`#${formInput.id}-error`)
+const showInputError = (element) => {
+  element.classList.add('form__input_type_error');
+};
+
+const hideInputError = (element) => {
+  element.classList.remove('form__input_type_error');
+};
+
+const isValid = () => {
+  if(!fromInput.validity.valid){
+    showInputError(fromInput);
+  } else{
+    hideInputError(fromInput);
+  }
+}
+
+formElement.addEventListener('submit', function(evt) {
+  evt.preventDefault;
+});
+
+fromInput.addEventListener('input', isValid);
