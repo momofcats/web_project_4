@@ -165,11 +165,12 @@ picturePopupCloseBtn.addEventListener('click', function () {
   animateFadeOut(popupPicture);
 });
 
-const popups = document.querySelectorAll('.popup');
-popups.forEach((popup) => {
+const popupList = document.querySelectorAll('.popup');
+popupList.forEach((popup) => {
   popup.addEventListener('click', function(evt){
-    togglePopup(evt.target);
-    animateFadeOut(evt.target);
+    const targetPopup = evt.target;
+    togglePopup(targetPopup);
+    animateFadeOut(targetPopup);
   });
 });
 
