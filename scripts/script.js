@@ -165,14 +165,29 @@ picturePopupCloseBtn.addEventListener('click', function () {
   animateFadeOut(popupPicture);
 });
 
-const popupList = document.querySelectorAll('.popup');
+const popupList = Array.from(document.querySelectorAll('.popup'));
 popupList.forEach((popup) => {
-  popup.addEventListener('click', function(evt){
+  popup.addEventListener('click', function(evt) {
     const targetPopup = evt.target;
     togglePopup(targetPopup);
     animateFadeOut(targetPopup);
   });
+  popup.addEventListener('keydown', function(evt){
+    if(evt.key === 'Escape') {
+      togglePopup(popup);
+      animateFadeOut(popup);
+    }
+  });
 });
+
+document.addEventListener('keydown', function(evt){
+    const openedPopup = document.querySelector('.popup_role_show');
+    if(evt.key === 'Escape') {
+      togglePopup(openedPopup);
+      animateFadeOut(openedPopup);
+    }
+  });
+
 
 
 renderGallery(initialCards);
