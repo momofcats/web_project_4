@@ -165,6 +165,15 @@ picturePopupCloseBtn.addEventListener('click', function () {
   animateFadeOut(popupPicture);
 });
 
+const popups = document.querySelectorAll('.popup');
+popups.forEach((popup) => {
+  popup.addEventListener('click', function(evt){
+    togglePopup(evt.target);
+    animateFadeOut(evt.target);
+  });
+});
+
+
 renderGallery(initialCards);
 
 
