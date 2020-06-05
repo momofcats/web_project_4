@@ -41,7 +41,7 @@
         </button>
         <form class="form" action="#" name="profile" novalidate>
           <h2 class="form__title">Edit profile</h2>
-          <input id="name-input" required pattern="[a-zA-Z ]{2,40}"
+          <input id="name-input" required pattern="[a-zA-Z\s\-]+"
             type="text"
             class="form__input js-input-name"
             name="name"
@@ -50,11 +50,11 @@
           >
           <span id="name-input-error" class="form__input-error"></span>
           <input id="job-input" required
-          pattern="[a-zA-Z ]"
+
             type="text"
             class="form__input js-input-job"
             name="job"
-            placeholder="About me" minlength="2" maxlength="200" pattern="[a-zA-Z ]{2,200}"
+            placeholder="About me" minlength="2" maxlength="200"
           >
           <span id="job-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Save</button>
@@ -73,7 +73,7 @@
             type="text"
             class="form__input js-input-title"
             name="title"
-            placeholder="Title" minlength="1" pattern="[a-zA-Z0-9]{1,30}" required
+            placeholder="Title" minlength="1" maxlength="30"  pattern="[a-zA-Z\s\-]+" required
           >
           <span id="title-input-error" class="form__input-error"></span>
           <input id="link-input"
