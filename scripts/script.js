@@ -84,16 +84,16 @@ function createCard(card) {
   cardTitle.textContent = card.name;
   cardImage.style.backgroundImage = `url('${card.link}')`;
 
-  cardLikeBtn.addEventListener("click", function (ev) {
+  cardLikeBtn.addEventListener("click", (ev) => {
     const target = ev.target;
     target.classList.toggle("card__like_active");
   });
 
-  cardDelBtn.addEventListener("click", function () {
+  cardDelBtn.addEventListener("click", () => {
     cardInstance.remove();
   });
 
-  cardImage.addEventListener("click", function () {
+  cardImage.addEventListener("click", () => {
     popupImage.src = "";
     popupTitle.textContent = "";
     popupImage.src = card.link;
@@ -129,36 +129,36 @@ function closePopupOnClick(evt) {
   animateFadeOut(targetPopup);
 }
 
-editBtn.addEventListener("click", function () {
+editBtn.addEventListener("click", () => {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
   togglePopup(popupProfile);
 });
 
-addBtn.addEventListener("click", function () {
+addBtn.addEventListener("click", () => {
   inputTitle.value = "";
   inputLink.value = "";
   togglePopup(popupCard);
 });
 
-profileFormCloseBtn.addEventListener("click", function () {
+profileFormCloseBtn.addEventListener("click", () => {
   togglePopup(popupProfile);
   animateFadeOut(popupProfile);
 });
 
-cardFormCloseBtn.addEventListener("click", function () {
+cardFormCloseBtn.addEventListener("click", () => {
   togglePopup(popupCard);
   animateFadeOut(popupCard);
 });
 
-profileForm.addEventListener("submit", function (evt) {
+profileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   userName.textContent = inputName.value;
   userJob.textContent = inputJob.value;
   togglePopup(popupProfile);
 });
 
-cardForm.addEventListener("submit", function (evt) {
+cardForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const card = {
     name: inputTitle.value,
@@ -169,7 +169,7 @@ cardForm.addEventListener("submit", function (evt) {
   togglePopup(popupCard);
 });
 
-picturePopupCloseBtn.addEventListener("click", function () {
+picturePopupCloseBtn.addEventListener("click", () => {
   togglePopup(popupPicture);
   animateFadeOut(popupPicture);
 });
