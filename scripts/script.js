@@ -22,6 +22,8 @@ const cardFormCloseBtn = popupCard.querySelector(".popup__btn-close");
 
 const picturePopupCloseBtn = popupPicture.querySelector(".popup__btn-close");
 
+const openedPopup = document.querySelector(".popup_role_show");
+
 //form data
 const inputName = profileForm.querySelector(".js-input-name");
 const inputJob = profileForm.querySelector(".js-input-job");
@@ -119,6 +121,24 @@ function renderGallery(cards) {
   });
 }
 
+function closePopupOnEsc(evt) {
+  const openedPopup = document.querySelector(".popup_role_show");
+  if (evt.key === "Escape") {
+    togglePopup(openedPopup);
+    animateFadeOut(openedPopup);
+  }
+  evt.target.removeEventListener("keydown", closePopupOnEsc);
+}
+
+function closePopupOnClick(evt) {
+  const targetPopup = evt.target;
+  if(!targetPopup.classList.contains("popup_role_show")) {
+    return;
+  }
+  togglePopup(targetPopup);
+  animateFadeOut(targetPopup);
+}
+
 editBtn.addEventListener("click", function () {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
@@ -141,15 +161,15 @@ cardFormCloseBtn.addEventListener("click", function () {
   animateFadeOut(popupCard);
 });
 
-profileForm.addEventListener("submit", function (ev) {
-  ev.preventDefault();
+profileForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
   userName.textContent = inputName.value;
   userJob.textContent = inputJob.value;
   togglePopup(popupProfile);
 });
 
-cardForm.addEventListener("submit", function (ev) {
-  ev.preventDefault();
+cardForm.addEventListener("submit", function (evt) {
+  evt.preventDefault();
   const card = {
     id: id++,
     name: inputTitle.value,
@@ -165,27 +185,8 @@ picturePopupCloseBtn.addEventListener("click", function () {
   animateFadeOut(popupPicture);
 });
 
-const popupList = Array.from(document.querySelectorAll(".popup"));
-popupList.forEach((popup) => {
-  popup.addEventListener("click", function (evt) {
-    const targetPopup = evt.target;
-    togglePopup(targetPopup);
-    animateFadeOut(targetPopup);
-  });
-  popup.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape") {
-      togglePopup(popup);
-      animateFadeOut(popup);
-    }
-  });
-});
+document.addEventListener("click", closePopupOnClick);
 
-document.addEventListener("keydown", function (evt) {
-  const openedPopup = document.querySelector(".popup_role_show");
-  if (evt.key === "Escape") {
-    togglePopup(openedPopup);
-    animateFadeOut(openedPopup);
-  }
-});
+document.addEventListener("keydown", closePopupOnEsc);
 
 renderGallery(initialCards);
