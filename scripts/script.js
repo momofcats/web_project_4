@@ -22,8 +22,6 @@ const cardFormCloseBtn = popupCard.querySelector(".popup__btn-close");
 
 const picturePopupCloseBtn = popupPicture.querySelector(".popup__btn-close");
 
-const openedPopup = document.querySelector(".popup_role_show");
-
 //form data
 const inputName = profileForm.querySelector(".js-input-name");
 const inputJob = profileForm.querySelector(".js-input-job");
