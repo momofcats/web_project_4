@@ -1,11 +1,11 @@
-function showInputError(form, input, { errorClass, inputErrorClass, ...rest }) {
+function showInputError(form, input, { errorClass, inputErrorClass }) {
   const errorElement = form.querySelector(`#${input.id}-error`);
   input.classList.add(inputErrorClass);
   errorElement.classList.add(errorClass);
   errorElement.textContent = input.validationMessage;
 }
 
-function hideInputError(form, input, { errorClass, inputErrorClass, ...rest }) {
+function hideInputError(form, input, { errorClass, inputErrorClass }) {
   const errorElement = form.querySelector(`#${input.id}-error`);
   input.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
@@ -20,7 +20,7 @@ function checkInputValidity(form, input, rest) {
   }
 }
 
-function hasInvalidInput(inputs, rest) {
+function hasInvalidInput(inputs) {
   return inputs.some((input) => {
     return !input.validity.valid;
   });
