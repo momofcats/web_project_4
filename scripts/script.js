@@ -37,36 +37,29 @@ const userJob = document.querySelector(".media__job");
 const popupImage = popupPicture.querySelector(".popup__image");
 const popupTitle = popupPicture.querySelector(".popup__title");
 
-let id = 0;
 
 const initialCards = [
   {
-    id: id++,
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
   },
   {
-    id: id++,
     name: "Lake Louise",
     link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
   },
   {
-    id: id++,
     name: "Bald Mountains",
     link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
   },
   {
-    id: id++,
     name: "Latemar",
     link: "https://code.s3.yandex.net/web-code/latemar.jpg",
   },
   {
-    id: id++,
     name: "Vanois National Park",
     link: "https://code.s3.yandex.net/web-code/vanois.jpg",
   },
   {
-    id: id++,
     name: "Lago di Braies",
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
@@ -90,7 +83,6 @@ function createCard(card) {
 
   cardTitle.textContent = card.name;
   cardImage.style.backgroundImage = `url('${card.link}')`;
-  cardDelBtn.dataset.id = card.id;
 
   cardLikeBtn.addEventListener("click", function (ev) {
     const target = ev.target;
@@ -169,7 +161,6 @@ profileForm.addEventListener("submit", function (evt) {
 cardForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
   const card = {
-    id: id++,
     name: inputTitle.value,
     link: inputLink.value,
   };
