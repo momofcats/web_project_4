@@ -2,7 +2,7 @@ function enableValidation({ formSelector, ...rest }) {
   const forms = [...document.querySelectorAll(formSelector)];
   forms.forEach((form) => {
     form.addEventListener("submit", function (evt) {
-      evt.preventDefault;
+      evt.preventDefault();
     });
     setEventListeners(form, rest);
   });
