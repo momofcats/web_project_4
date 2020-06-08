@@ -1,71 +1,66 @@
-const formElement = document.querySelector('.form');
-const inputElement = formElement.querySelector('.form__input');
-
-
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add('form__input_type_error');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('form__input-error_active');
+function enableValidation({formSelector, ...rest}) {
+  const forms = [...document.querySelectorAll(formSelector)];
+  forms.forEach((form) => {
+    form.addEventListener('submit', function(evt){
+      evt.preventDefault;
+    });
+    setEventListeners(form, rest);
+  });
 };
 
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove('form__input_type_error');
-  errorElement.classList.remove('form__input-error_active');
-  errorElement.textContent = '';
-};
+function setEventListeners(form, {inputSelector, submitButtonSelector, ...rest}) {
+  const submitBtn = form.querySelector(submitButtonSelector);
+  const inputs = [...form.querySelectorAll(inputSelector)];
+  toggleButtonState(inputs, submitBtn, rest);
+  inputs.forEach((input) => {
+    input.addEventListener('input', function(evt) {
+      checkInputValidity(form, input, rest);
+      toggleButtonState(inputs, submitBtn, rest);
+    });
+  });
+}
 
-const isValid = (formElement, inputElement) => {
-  if(!inputElement.validity.valid){
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else{
-    hideInputError(formElement, inputElement);
+function toggleButtonState(inputs, submitBtn,{inactiveButtonClass, ...rest}) {
+  if(hasInvalidInput(inputs, rest)) {
+    submitBtn.classList.add(inactiveButtonClass);
+  } else {
+    submitBtn.classList.remove(inactiveButtonClass);
   }
 }
 
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-  const buttonElement = formElement.querySelector('.form__submit-btn');
-  toggleButtonState(inputList, buttonElement);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
+function hasInvalidInput(inputs, rest) {
+  return inputs.some((input) => {
+    return !input.validity.valid;
   });
-};
+}
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault;
-    });
-    setEventListeners(formElement);
-  });
-};
-
-function hasInvalidInput(inputList) {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-function toggleButtonState(inputList, buttonElement) {
-  if(hasInvalidInput(inputList)) {
-    buttonElement.classList.add('form__submit-btn_inactive');
+function checkInputValidity(form, input, rest) {
+  if(!input.validity.valid) {
+    showInputError(form, input, rest);
   } else {
-    buttonElement.classList.remove('form__submit-btn_inactive');
+    hideInputError(form, input, rest);
   }
+}
+
+function showInputError(form, input, {errorClass, inputErrorClass, ...rest}) {
+  const errorElement = form.querySelector(`#${input.id}-error`);
+  input.classList.add(inputErrorClass);
+  errorElement.classList.add(errorClass);
+  errorElement.textContent = input.validationMessage;
+}
+
+function hideInputError(form, input, {errorClass, inputErrorClass, ...rest}) {
+  const errorElement = form.querySelector(`#${input.id}-error`);
+  input.classList.remove(inputErrorClass);
+  errorElement.classList.remove(errorClass);
+  errorElement.textContent = '';
 }
 
 enableValidation({
   formSelector: ".form",
   inputSelector: ".form__input",
   submitButtonSelector: ".form__submit-btn",
-  inactiveButtonClass: "form__submit-btn_inactive'",
+  inactiveButtonClass: "form__submit-btn_inactive",
   inputErrorClass: "form__input_type_error",
   errorClass: "form__input-error_active"
 });
