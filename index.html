@@ -35,26 +35,30 @@
     </footer>
     <div class="popup popup_background_light js-popup-profile">
       <div class="popup__container popup__container_type_form">
-        <button
-          class="popup__btn-close button"
-          type="button">
-        </button>
+        <button class="popup__btn-close button" type="button"></button>
         <form class="form" action="#" name="profile" novalidate>
           <h2 class="form__title">Edit profile</h2>
-          <input id="name-input" required pattern="[a-zA-Z\s\-]+"
+          <input
+            id="name-input"
+            required
+            pattern="[a-zA-Z\s\-]+"
             type="text"
             class="form__input js-input-name"
             name="name"
             placeholder="Name"
-            minlength="2" maxlength="40"
+            minlength="2"
+            maxlength="40"
           >
           <span id="name-input-error" class="form__input-error"></span>
-          <input id="job-input" required
-
+          <input
+            id="job-input"
+            required
             type="text"
             class="form__input js-input-job"
             name="job"
-            placeholder="About me" minlength="2" maxlength="200"
+            placeholder="About me"
+            minlength="2"
+            maxlength="200"
           >
           <span id="job-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Save</button>
@@ -63,24 +67,28 @@
     </div>
     <div class="popup popup_background_light js-popup-photo-form">
       <div class="popup__container popup__container_type_form">
-        <button
-          class="popup__btn-close button"
-          type="button">
-        </button>
+        <button class="popup__btn-close button" type="button"></button>
         <form class="form" action="#" name="new place" novalidate>
           <h2 class="form__title">New Place</h2>
-          <input id="title-input"
+          <input
+            id="title-input"
             type="text"
             class="form__input js-input-title"
             name="title"
-            placeholder="Title" minlength="1" maxlength="30"  pattern="[a-zA-Z\s\-]+" required
+            placeholder="Title"
+            minlength="1"
+            maxlength="30"
+            pattern="[a-zA-Z\s\-]+"
+            required
           >
           <span id="title-input-error" class="form__input-error"></span>
-          <input id="link-input"
+          <input
+            id="link-input"
             type="url"
             class="form__input js-input-link"
             name="link"
-            placeholder="Image link" required
+            placeholder="Image link"
+            required
           >
           <span id="link-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Create</button>
