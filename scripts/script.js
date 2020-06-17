@@ -1,6 +1,3 @@
-// templates
-const cardTemplate = document.querySelector(".js-card-template").content;
-
 //wrappers
 
 const popupProfile = document.querySelector(".js-popup-profile");
@@ -37,7 +34,6 @@ const userJob = document.querySelector(".media__job");
 const popupImage = popupPicture.querySelector(".popup__image");
 const popupTitle = popupPicture.querySelector(".popup__title");
 
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -71,44 +67,6 @@ function togglePopup(element) {
 
 function animateFadeOut(element) {
   element.classList.add("popup_role_fade-out");
-}
-
-function createCard(card) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__img");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const cardLikeBtn = cardElement.querySelector(".card__like");
-  const cardDelBtn = cardElement.querySelector(".card__del");
-  const cardInstance = cardElement.querySelector(".card");
-
-  cardTitle.textContent = card.name;
-  cardImage.style.backgroundImage = `url('${card.link}')`;
-
-  cardLikeBtn.addEventListener("click", (ev) => {
-    const target = ev.target;
-    target.classList.toggle("card__like_active");
-  });
-
-  cardDelBtn.addEventListener("click", () => {
-    cardInstance.remove();
-  });
-
-  cardImage.addEventListener("click", () => {
-    popupImage.src = "";
-    popupTitle.textContent = "";
-    popupImage.src = card.link;
-    popupImage.alt = card.name;
-    popupTitle.textContent = card.name;
-    togglePopup(popupPicture);
-    animateFadeOut(popupPicture);
-  });
-  return cardElement;
-}
-
-function renderGallery(cards) {
-  cards.forEach((card) => {
-    gallery.prepend(createCard(card));
-  });
 }
 
 function closePopupOnEsc(evt) {
@@ -164,8 +122,9 @@ cardForm.addEventListener("submit", (evt) => {
     name: inputTitle.value,
     link: inputLink.value,
   };
-  const cardInstance = createCard(card);
-  gallery.prepend(cardInstance);
+  const cardInstance = new Card(card, ".js-card-template");
+  const cardElement = cardInstance.generateCard();
+  gallery.prepend(cardElement);
   togglePopup(popupCard);
 });
 
@@ -174,8 +133,77 @@ picturePopupCloseBtn.addEventListener("click", () => {
   animateFadeOut(popupPicture);
 });
 
-document.addEventListener("click", closePopupOnClick);
 
+class Card {
+  constructor(data, templateSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._templateSelector = templateSelector;
+  }
+
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._templateSelector)
+      .content.cloneNode(true);
+
+    return cardElement;
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector(
+      ".card__img"
+    ).style.backgroundImage = `url('${this._link}')`;
+    this._element.querySelector(".card__title").textContent = this._name;
+    this._setEventListeners();
+    return this._element;
+  }
+
+  _handleLikeBtnClick(evt) {
+    const target = evt.target;
+    target.classList.toggle("card__like_active");
+  }
+
+  _handleDelBtnClick(evt) {
+    const cardElement = evt.target.parentNode;
+    cardElement.remove(evt);
+  }
+
+  _handleOpenPopup() {
+    popupImage.src = "";
+    popupImage.src = this._link;
+    popupImage.alt = this._name;
+    popupTitle.textContent = this._name;
+    togglePopup(popupPicture);
+    animateFadeOut(popupPicture);
+  }
+
+  _setEventListeners() {
+    this._element
+      .querySelector(".card__like")
+      .addEventListener("click", (evt) => {
+        this._handleLikeBtnClick(evt);
+      });
+    this._element
+    .querySelector(".card__del")
+    .addEventListener("click", (evt) => {
+      this._handleDelBtnClick(evt);
+    });
+    this._element
+    .querySelector(".card__img")
+    .addEventListener("click", () => {
+      this._handleOpenPopup();
+    });
+  }
+}
+
+document.addEventListener("click", closePopupOnClick);
 document.addEventListener("keydown", closePopupOnEsc);
 
-renderGallery(initialCards);
+initialCards.forEach((item) => {
+  const card = new Card(item, ".js-card-template");
+  const cardElement = card.generateCard();
+  gallery.append(cardElement);
+});
+
+
