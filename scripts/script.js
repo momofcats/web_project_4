@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-import {Card, popupPicture, togglePopup, animateFadeOut} from "./Card.js";
+import { Card, popupPicture, togglePopup, animateFadeOut } from "./Card.js";
 
 //templates
 
@@ -14,8 +14,6 @@ const popupCard = document.querySelector(".js-popup-photo-form");
 const cardForm = popupCard.querySelector(".form");
 
 const gallery = document.querySelector(".gallery");
-
-
 
 //buutons and DOM elements
 const editBtn = document.querySelector(".media__btn");
@@ -36,9 +34,6 @@ const inputLink = cardForm.querySelector(".js-input-link");
 //inputs
 const userName = document.querySelector(".media__name");
 const userJob = document.querySelector(".media__job");
-
-
-
 
 const initialCards = [
   {

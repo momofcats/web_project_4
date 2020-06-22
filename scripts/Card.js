@@ -5,12 +5,12 @@ const popupImage = popupPicture.querySelector(".popup__image");
 const popupTitle = popupPicture.querySelector(".popup__title");
 
 function togglePopup(element) {
-    element.classList.toggle("popup_role_show");
-  }
+  element.classList.toggle("popup_role_show");
+}
 
-  function animateFadeOut(element) {
-    element.classList.add("popup_role_fade-out");
-  }
+function animateFadeOut(element) {
+  element.classList.add("popup_role_fade-out");
+}
 
 class Card {
   constructor(data, templateSelector) {
@@ -55,7 +55,6 @@ class Card {
     popupTitle.textContent = this._name;
     togglePopup(popupPicture);
     animateFadeOut(popupPicture);
-
   }
 
   _setEventListeners() {
@@ -71,4 +70,4 @@ class Card {
   }
 }
 
-export {Card, popupPicture, togglePopup, animateFadeOut};
+export { Card, popupPicture, togglePopup, animateFadeOut };
