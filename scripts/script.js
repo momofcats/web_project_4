@@ -1,3 +1,16 @@
+import FormValidator from "./FormValidator.js";
+
+const settings = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__submit-btn",
+  inactiveButtonClass: "form__submit-btn_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+}
+
+
+
+
 //wrappers
 
 const popupProfile = document.querySelector(".js-popup-profile");
@@ -207,3 +220,7 @@ initialCards.forEach((item) => {
 });
 
 
+const validatedProfileForm = new FormValidator(settings, profileForm);
+  const validatedCardForm = new FormValidator(settings, cardForm);
+  validatedProfileForm.enableValidation();
+  validatedCardForm.enableValidation();
