@@ -1,10 +1,8 @@
-import FormValidator from "./FormValidator.js";
-import { Card, popupPicture, togglePopup, animateFadeOut } from "./Card.js";
-import Section from "./Section.js";
+import FormValidator from "./components/FormValidator.js";
+import { Card, popupPicture, togglePopup, animateFadeOut } from "./components/Card.js";
+import Section from "./components/Section.js";
+import {cardTemplateSelector, initialCards} from "./utils/constants.js";
 
-//templates
-
-const cardTemplateSelector = ".js-card-template";
 
 //wrappers
 
@@ -13,8 +11,6 @@ const profileForm = popupProfile.querySelector(".form");
 
 const popupCard = document.querySelector(".js-popup-photo-form");
 const cardForm = popupCard.querySelector(".form");
-
-const gallery = document.querySelector(".gallery");
 
 //buutons and DOM elements
 const editBtn = document.querySelector(".media__btn");
@@ -35,33 +31,6 @@ const inputLink = cardForm.querySelector(".js-input-link");
 //inputs
 const userName = document.querySelector(".media__name");
 const userJob = document.querySelector(".media__job");
-
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanois National Park",
-    link: "https://code.s3.yandex.net/web-code/vanois.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
 
 const settings = {
   inputSelector: ".form__input",
