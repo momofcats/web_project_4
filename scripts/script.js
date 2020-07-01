@@ -1,5 +1,6 @@
 import FormValidator from "./FormValidator.js";
 import { Card, popupPicture, togglePopup, animateFadeOut } from "./Card.js";
+import Section from "./Section.js";
 
 //templates
 
@@ -70,10 +71,10 @@ const settings = {
   errorClass: "form__input-error_active",
 };
 
-function renderCard(data) {
-  const card = new Card(data, cardTemplateSelector);
-  gallery.prepend(card.generateCard());
-}
+// function renderCard(data) {
+//   const card = new Card(data, cardTemplateSelector);
+//   gallery.prepend(card.generateCard());
+// }
 
 function closePopupOnEsc(evt) {
   const openedPopup = document.querySelector(".popup_role_show");
@@ -141,10 +142,22 @@ document.addEventListener("click", closePopupOnClick);
 document.addEventListener("keydown", closePopupOnEsc);
 
 // Render gallery
+const cardList = new Section(
+  {
+    data: initialCards,
+    renderer: (item) => {
+        const card = new Card(item, cardTemplateSelector);
+        const cardElement = card.generateCard();
+        cardList.addItem(cardElement);
+      }
+    },
+  ".gallery"
+);
+cardList.renderItems();
 
-initialCards.forEach((item) => {
-  renderCard(item);
-});
+// initialCards.forEach((item) => {
+//   renderCard(item);
+// });
 
 // Validate forms
 
