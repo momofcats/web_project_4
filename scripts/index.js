@@ -2,6 +2,7 @@ import FormValidator from "./components/FormValidator.js";
 import { Card, popupPicture, togglePopup, animateFadeOut } from "./components/Card.js";
 import Section from "./components/Section.js";
 import {cardTemplateSelector, initialCards} from "./utils/constants.js";
+import Popup from "./components/Popup.js";
 
 
 //wrappers
@@ -14,10 +15,9 @@ const cardForm = popupCard.querySelector(".form");
 
 //buutons and DOM elements
 const editBtn = document.querySelector(".media__btn");
-const profileFormCloseBtn = popupProfile.querySelector(".popup__btn-close");
+
 
 const addBtn = document.querySelector(".profile__btn");
-const cardFormCloseBtn = popupCard.querySelector(".popup__btn-close");
 
 const picturePopupCloseBtn = popupPicture.querySelector(".popup__btn-close");
 
@@ -40,49 +40,20 @@ const settings = {
   errorClass: "form__input-error_active",
 };
 
-// function renderCard(data) {
-//   const card = new Card(data, cardTemplateSelector);
-//   gallery.prepend(card.generateCard());
-// }
 
-function closePopupOnEsc(evt) {
-  const openedPopup = document.querySelector(".popup_role_show");
-  if (evt.key === "Escape") {
-    togglePopup(openedPopup);
-    animateFadeOut(openedPopup);
-  }
-  evt.target.removeEventListener("keydown", closePopupOnEsc);
-}
-
-function closePopupOnClick(evt) {
-  const targetPopup = evt.target;
-  if (!targetPopup.classList.contains("popup_role_show")) {
-    return;
-  }
-  togglePopup(targetPopup);
-  animateFadeOut(targetPopup);
-}
-
+//open popup form
 editBtn.addEventListener("click", () => {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
-  togglePopup(popupProfile);
+    const editProfilePopup = new Popup(".js-popup-profile");
+    editProfilePopup.open();
 });
 
 addBtn.addEventListener("click", () => {
   inputTitle.value = "";
   inputLink.value = "";
-  togglePopup(popupCard);
-});
-
-profileFormCloseBtn.addEventListener("click", () => {
-  togglePopup(popupProfile);
-  animateFadeOut(popupProfile);
-});
-
-cardFormCloseBtn.addEventListener("click", () => {
-  togglePopup(popupCard);
-  animateFadeOut(popupCard);
+  const addCardPopup = new Popup(".js-popup-photo-form");
+  addCardPopup.open();
 });
 
 profileForm.addEventListener("submit", (evt) => {
@@ -102,13 +73,10 @@ cardForm.addEventListener("submit", (evt) => {
   togglePopup(popupCard);
 });
 
-picturePopupCloseBtn.addEventListener("click", () => {
-  togglePopup(popupPicture);
-  animateFadeOut(popupPicture);
-});
 
-document.addEventListener("click", closePopupOnClick);
-document.addEventListener("keydown", closePopupOnEsc);
+
+// document.addEventListener("click", closePopupOnClick);
+//document.addEventListener("keydown", closePopupOnEsc);
 
 // Render gallery
 const cardList = new Section(
