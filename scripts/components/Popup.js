@@ -21,7 +21,8 @@ export default class Popup {
     }
   }
   setEventListeners() {
-     //that adds a click event listener to the close icon of the popup.
+     //that adds a click event listener to the close icon of the popup and the popup itself.
     this._element.querySelector(".popup__btn-close").addEventListener("click", () => this.close());
+    this._element.addEventListener("click", () => this.close());
   }
 }

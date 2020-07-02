@@ -45,14 +45,20 @@ const settings = {
 editBtn.addEventListener("click", () => {
   inputName.value = userName.textContent;
   inputJob.value = userJob.textContent;
-    const editProfilePopup = new Popup(".js-popup-profile");
+    const editProfilePopup = new PopupWithForm({popupSelector: ".js-popup-profile", handleFormSubmit: (formData)=> {
+      // create instance of UserInfo
+    }
+    });
     editProfilePopup.open();
 });
 
 addBtn.addEventListener("click", () => {
   inputTitle.value = "";
   inputLink.value = "";
-  const addCardPopup = new Popup(".js-popup-photo-form");
+  const addCardPopup = new PopupWithForm({popupSelector: ".js-popup-photo-form", handleFormSubmit: (formData) => {
+    //create instance of card
+  }
+  });
   addCardPopup.open();
 });
 
