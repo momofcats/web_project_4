@@ -6,14 +6,14 @@ export default class Popup {
   }
   open() {
     this._element.classList.add("popup_role_show");
+    document.addEventListener("keyup", this._handleEscClose);
   }
   close() {
     this._element.classList.remove("popup_role_show");
-    this._animateFadeout();
-  }
-  _animateFadeout() {
     this._element.classList.add("popup_role_fade-out");
+    document.removeEventListeners("keyup", this._handleEscClose);
   }
+
   _handleEscClose(evt) {
     //that stores the logic for closing the popup by pressing the Esc key.
     if (evt.key === "Escape") {

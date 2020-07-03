@@ -13,7 +13,8 @@ function animateFadeOut(element) {
 }
 
 class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
+    this._handleCardClick = handleCardClick;
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
