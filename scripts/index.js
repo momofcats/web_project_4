@@ -2,8 +2,6 @@ import FormValidator from "./components/FormValidator.js";
 import {
   Card,
   popupPicture,
-  togglePopup,
-  animateFadeOut,
 } from "./components/Card.js";
 import Section from "./components/Section.js";
 import { cardTemplateSelector, initialCards } from "./utils/constants.js";
@@ -12,6 +10,8 @@ import UserInfo from "./components/UserInfo.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 
 //wrappers
+
+const gallery = document.querySelector(".gallery");
 
 const popupProfile = document.querySelector(".js-popup-profile");
 const profileForm = popupProfile.querySelector(".form");
@@ -57,7 +57,7 @@ editBtn.addEventListener("click", () => {
 
   const editProfilePopup = new PopupWithForm({
     popupSelector: ".js-popup-profile",
-    handleFormSubmit: (formData) => {
+    onSubmit: (formData) => {
       userInfo.setUserInfo(formData);
     },
   });
@@ -65,36 +65,16 @@ editBtn.addEventListener("click", () => {
 });
 
 addBtn.addEventListener("click", () => {
-  inputTitle.value = "";
-  inputLink.value = "";
   const addCardPopup = new PopupWithForm({
     popupSelector: ".js-popup-photo-form",
-    handleFormSubmit: (formData) => {
-      //create instance of card
-    },
+    onSubmit: (formData) => {
+            const card = new Card(formData, cardTemplateSelector,handleCardClick);
+            const cardElement = card.generateCard();
+            cardList.addItem(cardElement);
+        }
   });
   addCardPopup.open();
 });
-
-// profileForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   userName.textContent = inputName.value;
-//   userJob.textContent = inputJob.value;
-//   togglePopup(popupProfile);
-// });
-
-cardForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const card = {
-    name: inputTitle.value,
-    link: inputLink.value,
-  };
-  renderCard(card);
-  togglePopup(popupCard);
-});
-
-// document.addEventListener("click", closePopupOnClick);
-//document.addEventListener("keydown", closePopupOnEsc);
 
 // Render gallery
 const cardList = new Section(
@@ -110,9 +90,6 @@ const cardList = new Section(
 );
 cardList.renderItems();
 
-// initialCards.forEach((item) => {
-//   renderCard(item);
-// });
 
 // Validate forms
 
