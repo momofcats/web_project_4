@@ -30,4 +30,25 @@ export const initialCards = [
   },
 ];
 
+//buutons and DOM elements
+const popupProfile = document.querySelector(".js-popup-profile");
+export const profileForm = popupProfile.querySelector(".form");
 
+const popupCard = document.querySelector(".js-popup-photo-form");
+export const cardForm = popupCard.querySelector(".form");
+
+export const editBtn = document.querySelector(".media__btn");
+export const addBtn = document.querySelector(".profile__btn");
+
+//form data
+export const inputName = profileForm.querySelector(".js-input-name");
+export const inputJob = profileForm.querySelector(".js-input-job");
+
+//form validation configurations
+export const settings = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__submit-btn",
+  inactiveButtonClass: "form__submit-btn_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};

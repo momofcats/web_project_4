@@ -1,11 +1,4 @@
-//popup data
-
-const popupPicture = document.querySelector(".js-popup-picture");
-const popupImage = popupPicture.querySelector(".popup__image");
-const popupTitle = popupPicture.querySelector(".popup__title");
-
-
-class Card {
+export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
@@ -42,15 +35,6 @@ class Card {
     cardElement.remove(evt);
   }
 
-  // _handleOpenPopup() {
-  //   popupImage.src = "";
-  //   popupImage.src = this._link;
-  //   popupImage.alt = this._name;
-  //   popupTitle.textContent = this._name;
-  //   togglePopup(popupPicture);
-  //   animateFadeOut(popupPicture);
-  // }
-
   _setEventListeners() {
     this._card.querySelector(".card__like").addEventListener("click", (evt) => {
       this._handleLikeBtnClick(evt);
@@ -64,4 +48,4 @@ class Card {
   }
 }
 
-export { Card, popupPicture };
+export { Card };
