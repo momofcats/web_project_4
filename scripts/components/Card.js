@@ -58,9 +58,9 @@ class Card {
     this._card.querySelector(".card__del").addEventListener("click", (evt) => {
       this._handleDelBtnClick(evt);
     });
-    // this._card.querySelector(".card__img").addEventListener("click", () => {
-    //   this._handleOpenPopup();
-    // });
+    this._card.querySelector(".card__img").addEventListener("click", () => {
+      this._handlecardClick();
+    });
   }
 }
 

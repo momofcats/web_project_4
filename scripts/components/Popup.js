@@ -1,17 +1,18 @@
 export default class Popup {
   constructor(popupSelector) {
     this._element = document.querySelector(popupSelector);
-    this._handleClose = this.close.bind(this);
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
   open() {
     this.setEventListeners();
     this._element.classList.add("popup_role_show");
-    document.addEventListener("keyup", this._handleEscClose);
+    //document.addEventListener("keyup", this._handleEscClose);
   }
   close() {
     this._element.classList.remove("popup_role_show");
     this._element.classList.add("popup_role_fade-out");
-    document.removeEventListener("keyup", this._handleEscClose);
+    //document.removeEventListener("keyup", this._handleEscClose);
+    this._removeEventListeners();
   }
 
   _handleEscClose(evt) {
@@ -20,11 +21,26 @@ export default class Popup {
       this.close();
     }
   }
-  setEventListeners() {
-     //that adds a click event listener to the close icon of the popup and the popup itself.
-    this._element.querySelector(".popup__btn-close").addEventListener("click", () => this.close());
-    if (this._element.classList.contains("popup_role_show")) {
+
+  _handleOverlayClick(evt) {
+    if (evt.target.classList.contains("popup_role_show")) {
       this.close();
     }
+
+  }
+  setEventListeners() {
+     //that adds a click event listener to the close icon of the popup and the popup itself.
+    this._element.addEventListener("click", (evt) => {
+      if(evt.target.classList.contains("popup__btn-close") || evt.target.classList.contains("popup_role_show")) {
+        this.close();
+      }
+    });
+     document.addEventListener("keyup", this._handleEscClose);
+    }
+
+
+  _removeEventListeners() {
+    document.removeEventListener("keyup", this._handleEscClose);
+    this._element.removeEventListener("click", this.close);
   }
 }

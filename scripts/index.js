@@ -8,6 +8,7 @@ import { cardTemplateSelector, initialCards } from "./utils/constants.js";
 import Popup from "./components/Popup.js";
 import UserInfo from "./components/UserInfo.js";
 import PopupWithForm from "./components/PopupWithForm.js";
+import PopupWithImage from "./components/PopupWithImage.js";
 
 //wrappers
 
@@ -68,7 +69,11 @@ addBtn.addEventListener("click", () => {
   const addCardPopup = new PopupWithForm({
     popupSelector: ".js-popup-photo-form",
     onSubmit: (formData) => {
-            const card = new Card(formData, cardTemplateSelector,handleCardClick);
+            const card = new Card(formData, cardTemplateSelector,() => {
+              const imagePopup = new PopupWithImage(".js-popup-picture");
+              imagePopup.open({link: formData.link, name: formData.name});
+            }
+            );
             const cardElement = card.generateCard();
             cardList.addItem(cardElement);
         }
@@ -81,7 +86,10 @@ const cardList = new Section(
   {
     data: initialCards,
     renderer: (item) => {
-      const card = new Card(item, cardTemplateSelector);
+      const card = new Card(item, cardTemplateSelector, () => {
+        const imagePopup = new PopupWithImage(".js-popup-picture");
+        imagePopup.open({link: item.link, name: item.name});
+      });
       const cardElement = card.generateCard();
       cardList.addItem(cardElement);
     },
@@ -89,6 +97,7 @@ const cardList = new Section(
   ".gallery"
 );
 cardList.renderItems();
+
 
 
 // Validate forms
