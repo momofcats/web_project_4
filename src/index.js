@@ -22,33 +22,34 @@ const userInfo = new UserInfo({
   userJobSelector: ".media__job",
 });
 
-editBtn.addEventListener("click", () => {
+const editProfilePopup = new PopupWithForm({
+  popupSelector: ".js-popup-profile",
+  onSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+  },
+});
 
+const imagePopup = new PopupWithImage(".js-popup-picture");
+
+editBtn.addEventListener("click", () => {
   const pageData = userInfo.getUserInfo();
   inputName.value = pageData.name;
   inputJob.value = pageData.job;
-
-  const editProfilePopup = new PopupWithForm({
-    popupSelector: ".js-popup-profile",
-    onSubmit: (formData) => {
-      userInfo.setUserInfo(formData);
-    },
-  });
   editProfilePopup.open();
 });
 
+const addCardPopup = new PopupWithForm({
+  popupSelector: ".js-popup-photo-form",
+  onSubmit: (formData) => {
+    const card = new Card(formData, cardTemplateSelector, () => {
+      imagePopup.open({ link: formData.link, name: formData.name });
+    });
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  },
+});
+
 addBtn.addEventListener("click", () => {
-  const addCardPopup = new PopupWithForm({
-    popupSelector: ".js-popup-photo-form",
-    onSubmit: (formData) => {
-      const card = new Card(formData, cardTemplateSelector, () => {
-        const imagePopup = new PopupWithImage(".js-popup-picture");
-        imagePopup.open({ link: formData.link, name: formData.name });
-      });
-      const cardElement = card.generateCard();
-      cardList.addItem(cardElement);
-    },
-  });
   addCardPopup.open();
 });
 
@@ -58,7 +59,6 @@ const cardList = new Section(
     data: initialCards,
     renderer: (item) => {
       const card = new Card(item, cardTemplateSelector, () => {
-        const imagePopup = new PopupWithImage(".js-popup-picture");
         imagePopup.open({ link: item.link, name: item.name });
       });
       const cardElement = card.generateCard();
