@@ -17,11 +17,13 @@ import UserInfo from "./scripts/components/UserInfo";
 import PopupWithForm from "./scripts/components/PopupWithForm";
 import PopupWithImage from "./scripts/components/PopupWithImage";
 
+const userInfo = new UserInfo({
+  userNameSelector: ".media__name",
+  userJobSelector: ".media__job",
+});
+
 editBtn.addEventListener("click", () => {
-  const userInfo = new UserInfo({
-    userNameSelector: ".media__name",
-    userJobSelector: ".media__job",
-  });
+
   const pageData = userInfo.getUserInfo();
   inputName.value = pageData.name;
   inputJob.value = pageData.job;
