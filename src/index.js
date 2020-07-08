@@ -1,6 +1,7 @@
-import FormValidator from "./components/FormValidator.js";
-import Card from "./components/Card.js";
-import Section from "./components/Section.js";
+import "./pages/index.css";
+import FormValidator from "./scripts/components/FormValidator";
+import Card from "./scripts/components/Card";
+import Section from "./scripts/components/Section";
 import {
   cardTemplateSelector,
   initialCards,
@@ -11,10 +12,10 @@ import {
   settings,
   profileForm,
   cardForm,
-} from "./utils/constants.js";
-import UserInfo from "./components/UserInfo.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import PopupWithImage from "./components/PopupWithImage.js";
+} from "./scripts/utils/constants";
+import UserInfo from "./scripts/components/UserInfo";
+import PopupWithForm from "./scripts/components/PopupWithForm";
+import PopupWithImage from "./scripts/components/PopupWithImage";
 
 editBtn.addEventListener("click", () => {
   const userInfo = new UserInfo({
@@ -71,3 +72,4 @@ const validatedProfileForm = new FormValidator(settings, profileForm);
 const validatedCardForm = new FormValidator(settings, cardForm);
 validatedProfileForm.enableValidation();
 validatedCardForm.enableValidation();
+
