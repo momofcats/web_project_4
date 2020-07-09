@@ -41,7 +41,7 @@ export default class Card {
       this._handleDelBtnClick(evt);
     });
     this._card.querySelector(".card__img").addEventListener("click", () => {
-      this._handlecardClick({link: this._link, name: this._name});
+      this._handlecardClick({ link: this._link, name: this._name });
     });
   }
 }

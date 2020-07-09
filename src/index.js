@@ -41,8 +41,8 @@ editBtn.addEventListener("click", () => {
 const addCardPopup = new PopupWithForm({
   popupSelector: ".js-popup-photo-form",
   onSubmit: (formData) => {
-    const card = new Card(formData, cardTemplateSelector, () => {
-      imagePopup.open({link: formData.link, name: formData.name});
+    const card = new Card(formData, cardTemplateSelector, (cardData) => {
+      imagePopup.open(cardData);
     });
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
@@ -58,8 +58,8 @@ const cardList = new Section(
   {
     data: initialCards,
     renderer: (item) => {
-      const card = new Card(item, cardTemplateSelector, () => {
-        imagePopup.open({link: item.link, name: item.name});
+      const card = new Card(item, cardTemplateSelector, (cardData) => {
+        imagePopup.open(cardData);
       });
       const cardElement = card.generateCard();
       cardList.addItem(cardElement);
