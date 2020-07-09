@@ -42,7 +42,7 @@ const addCardPopup = new PopupWithForm({
   popupSelector: ".js-popup-photo-form",
   onSubmit: (formData) => {
     const card = new Card(formData, cardTemplateSelector, () => {
-      imagePopup.open();
+      imagePopup.open({link: formData.link, name: formData.name});
     });
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
@@ -59,7 +59,7 @@ const cardList = new Section(
     data: initialCards,
     renderer: (item) => {
       const card = new Card(item, cardTemplateSelector, () => {
-        imagePopup.open();
+        imagePopup.open({link: item.link, name: item.name});
       });
       const cardElement = card.generateCard();
       cardList.addItem(cardElement);
