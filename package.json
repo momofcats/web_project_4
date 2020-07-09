@@ -4,7 +4,7 @@
   "description": "### Overview",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "rimraf dist && webpack",
     "dev": "webpack-dev-server --open --watch"
   },
   "repository": {
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/momofcats/web_project_4#readme",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "jquery": "^3.5.1"
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",
