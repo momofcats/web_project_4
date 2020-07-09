@@ -26,13 +26,11 @@ export default class Card {
   }
 
   _handleLikeBtnClick(evt) {
-    const target = evt.target;
-    target.classList.toggle("card__like_active");
+    evt.target.classList.toggle("card__like_active");
   }
 
-  _handleDelBtnClick(evt) {
-    const cardElement = evt.target.parentNode;
-    cardElement.remove(evt);
+  _handleDelBtnClick() {
+    this._card.remove();
   }
 
   _setEventListeners() {
@@ -43,9 +41,9 @@ export default class Card {
       this._handleDelBtnClick(evt);
     });
     this._card.querySelector(".card__img").addEventListener("click", () => {
-      this._handlecardClick();
+      this._handlecardClick({link: this._link, name: this._name});
     });
   }
 }
 
-export { Card };
+
