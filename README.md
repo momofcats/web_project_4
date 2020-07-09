@@ -13,7 +13,7 @@
 
 ## Link
 
-[Link to github pages](https://momofcats.github.io/web_project_4/index.html)
+[Link to github pages](https://momofcats.github.io/web_project_4/dist/index.html)
 
 ## Description of the project and its functionality
 
