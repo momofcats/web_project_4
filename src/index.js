@@ -17,6 +17,12 @@ import UserInfo from "./scripts/components/UserInfo";
 import PopupWithForm from "./scripts/components/PopupWithForm";
 import PopupWithImage from "./scripts/components/PopupWithImage";
 
+// for loading user info on the page
+
+const avatar = document.querySelector(".media__image");
+const name = document.querySelector(".media__name");
+const about = document.querySelector(".media__job");
+
 const userInfo = new UserInfo({
   userNameSelector: ".media__name",
   userJobSelector: ".media__job",
@@ -83,4 +89,16 @@ fetch("https://around.nomoreparties.co/v1/group-2/cards", {
   .then(res => res.json())
   .then((result) => {
     console.log(result);
+  });
+
+fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
+  headers: {
+    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    avatar.src = result.avatar;
+    name.textContent = result.name;
+    about.textContent = result.about;
   });
