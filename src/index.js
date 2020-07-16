@@ -16,6 +16,15 @@ import {
 import UserInfo from "./scripts/components/UserInfo";
 import PopupWithForm from "./scripts/components/PopupWithForm";
 import PopupWithImage from "./scripts/components/PopupWithImage";
+import Api from "./scripts/components/Api";
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-2",
+  headers: {
+    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c",
+    "Content-Type": "application/json",
+  },
+});
 
 // for loading user info on the page
 
@@ -62,7 +71,7 @@ addBtn.addEventListener("click", () => {
 // Render gallery
 const cardList = new Section(
   {
-    data: initialCards,
+    data: api.getInitialCards(),
     renderer: (item) => {
       const card = new Card(item, cardTemplateSelector, (cardData) => {
         imagePopup.open(cardData);
@@ -81,24 +90,16 @@ const validatedCardForm = new FormValidator(settings, cardForm);
 validatedProfileForm.enableValidation();
 validatedCardForm.enableValidation();
 
-fetch("https://around.nomoreparties.co/v1/group-2/cards", {
-  headers: {
-    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c"
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
-
+// request and load userinfo
 fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
   headers: {
-    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c"
-  }
+    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c",
+  },
 })
-  .then(res => res.json())
+  .then((res) => res.json())
   .then((result) => {
     avatar.src = result.avatar;
     name.textContent = result.name;
     about.textContent = result.about;
   });
+
