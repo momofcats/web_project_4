@@ -4,7 +4,15 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this.options.baseUrl}/cards`, {
+    return this.request("/cards");
+  }
+
+  getUserInfo() {
+    return this.request("/users/me");
+  }
+
+  request(api) {
+    return fetch(`${this.options.baseUrl}${api}`, {
       headers: this.options.headers,
     }).then((res) => {
       if (res.ok) {
@@ -16,5 +24,3 @@ export default class Api {
 }
 
 // other methods for working with the API
-
-

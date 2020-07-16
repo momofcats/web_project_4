@@ -90,16 +90,11 @@ const validatedCardForm = new FormValidator(settings, cardForm);
 validatedProfileForm.enableValidation();
 validatedCardForm.enableValidation();
 
-// request and load userinfo
-fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
-  headers: {
-    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c",
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    avatar.src = result.avatar;
-    name.textContent = result.name;
-    about.textContent = result.about;
-  });
+// load userinfo
+api.getUserInfo().then((userData) => {
+  avatar.src = userData.avatar;
+  name.textContent = userData.name;
+  about.textContent = userData.about;
+});
+
 
