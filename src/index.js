@@ -75,3 +75,12 @@ const validatedCardForm = new FormValidator(settings, cardForm);
 validatedProfileForm.enableValidation();
 validatedCardForm.enableValidation();
 
+fetch("https://around.nomoreparties.co/v1/group-2/cards", {
+  headers: {
+    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
