@@ -2,6 +2,7 @@ export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes;
     this._templateSelector = templateSelector;
     this._handlecardClick = handleCardClick;
   }
@@ -21,6 +22,7 @@ export default class Card {
       ".card__img"
     ).style.backgroundImage = `url('${this._link}')`;
     this._card.querySelector(".card__title").textContent = this._name;
+    this._card.querySelector(".card__likes").textContent = this._likes.length;
     this._setEventListeners();
     return this._card;
   }
