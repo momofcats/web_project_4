@@ -57,6 +57,7 @@ editBtn.addEventListener("click", () => {
 const addCardPopup = new PopupWithForm({
   popupSelector: ".js-popup-photo-form",
   onSubmit: (formData) => {
+    api.postNewCard(formData);
     const card = new Card(formData, cardTemplateSelector, (cardData) => {
       imagePopup.open(cardData);
     });
@@ -99,12 +100,3 @@ api.getUserInfo().then((userData) => {
 });
 
 
-fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
-  headers: {
-    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c"
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
