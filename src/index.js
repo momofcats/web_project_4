@@ -41,6 +41,7 @@ const editProfilePopup = new PopupWithForm({
   popupSelector: ".js-popup-profile",
   onSubmit: (formData) => {
     userInfo.setUserInfo(formData);
+    api.updateUserInfo(formData);
   },
 });
 
@@ -98,3 +99,12 @@ api.getUserInfo().then((userData) => {
 });
 
 
+fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
+  headers: {
+    authorization: "2ea24103-3839-4671-8e47-57675e6fba9c"
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  });
