@@ -46,6 +46,9 @@ const editProfilePopup = new PopupWithForm({
 });
 
 const imagePopup = new PopupWithImage(".js-popup-picture");
+const delCardPopup = new PopupWithForm({popupSelector: ".js-popup-del-card", onSubmit: (cardIdData) => {
+  // api that deletes card from server
+}});
 
 editBtn.addEventListener("click", () => {
   const pageData = userInfo.getUserInfo();
@@ -57,9 +60,12 @@ editBtn.addEventListener("click", () => {
 const addCardPopup = new PopupWithForm({
   popupSelector: ".js-popup-photo-form",
   onSubmit: (formData) => {
+    formData.likes = [];
     api.postNewCard(formData);
     const card = new Card(formData, cardTemplateSelector, (cardData) => {
       imagePopup.open(cardData);
+    }, () => {
+      delCardPopup.open();
     });
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
@@ -77,6 +83,8 @@ const cardList = new Section(
     renderer: (item) => {
       const card = new Card(item, cardTemplateSelector, (cardData) => {
         imagePopup.open(cardData);
+      }, () => {
+        delCardPopup.open();
       });
       const cardElement = card.generateCard();
       cardList.addItem(cardElement);

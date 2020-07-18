@@ -12,36 +12,32 @@ export default class Api {
   }
 
   updateUserInfo(formData) {
-    return fetch("https://around.nomoreparties.co/v1/group-2/users/me", {
-      method: "PATCH",
-      headers: {
-        authorization: "2ea24103-3839-4671-8e47-57675e6fba9c",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+    return this.request(
+      "/users/me",
+      "PATCH",
+      JSON.stringify({
         name: formData.name,
-        about: formData.about
+        about: formData.about,
       })
-    });
+    );
   }
 
   postNewCard(formData) {
-    return fetch("https://around.nomoreparties.co/v1/group-2/cards", {
-      method: "POST",
-      headers: {
-        authorization: "2ea24103-3839-4671-8e47-57675e6fba9c",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+    return this.request(
+      "/cards/",
+      "POST",
+      JSON.stringify({
         name: formData.name,
-        link: formData.link
+        link: formData.link,
       })
-    });
+    );
   }
 
-  request(api) {
+  request(api, method, body) {
     return fetch(`${this.options.baseUrl}${api}`, {
       headers: this.options.headers,
+      method,
+      body,
     }).then((res) => {
       if (res.ok) {
         return res.json();

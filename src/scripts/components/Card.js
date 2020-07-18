@@ -1,12 +1,18 @@
+
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, handleCardClick, handleDelBtnClick) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._templateSelector = templateSelector;
     this._handlecardClick = handleCardClick;
+    this._handleDelBtnClick = handleDelBtnClick;
+    this._id = data._id;
   }
 
+  id() {
+    return this._id;
+  }
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -31,16 +37,17 @@ export default class Card {
     evt.target.classList.toggle("card__like_active");
   }
 
-  _handleDelBtnClick() {
-    this._card.remove();
-  }
+  // _handleDelBtnClick() {
+  //   // open are you sure popup
+  //   // this._card.remove();
+  // }
 
   _setEventListeners() {
     this._card.querySelector(".card__like").addEventListener("click", (evt) => {
       this._handleLikeBtnClick(evt);
     });
-    this._card.querySelector(".card__del").addEventListener("click", (evt) => {
-      this._handleDelBtnClick(evt);
+    this._card.querySelector(".card__del").addEventListener("click", () => {
+      this._handleDelBtnClick(this);
     });
     this._card.querySelector(".card__img").addEventListener("click", () => {
       this._handlecardClick({ link: this._link, name: this._name });
