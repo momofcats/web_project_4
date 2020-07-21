@@ -16,6 +16,7 @@ import {
 import UserInfo from "./scripts/components/UserInfo";
 import PopupWithForm from "./scripts/components/PopupWithForm";
 import PopupWithImage from "./scripts/components/PopupWithImage";
+import PopupWithConfirm from "./scripts/components/PopupWithConfirm";
 import Api from "./scripts/components/Api";
 
 const api = new Api({
@@ -28,14 +29,52 @@ const api = new Api({
 
 // for loading user info on the page
 
-const avatar = document.querySelector(".media__image");
-const name = document.querySelector(".media__name");
-const about = document.querySelector(".media__job");
-
 const userInfo = new UserInfo({
   userNameSelector: ".media__name",
   userJobSelector: ".media__job",
+  userAvatarSelector: ".media__image",
 });
+
+const delCardPopup = new PopupWithConfirm(".js-popup-del-card");
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    return userData;
+  })
+  .catch((err) => console.log(err))
+  .then((userData) => {
+    // Render gallery
+    const me = userData._id;
+    const cardList = new Section(
+      {
+        data: api.getInitialCards(),
+        renderer: (item) => {
+          item.isReadOnly = item.owner._id !== me;
+          const card = new Card(
+            item,
+            cardTemplateSelector,
+            (cardData) => {
+              imagePopup.open(cardData);
+            },
+            (card) => {
+              delCardPopup.setOnConfirm(() => {
+                api.delCard(card.id());
+                card.deleteCard();
+                delCardPopup.close();
+              });
+              delCardPopup.open();
+            }
+          );
+          const cardElement = card.generateCard();
+          cardList.addItem(cardElement);
+        },
+      },
+      ".gallery"
+    );
+    cardList.renderItems();
+  });
 
 const editProfilePopup = new PopupWithForm({
   popupSelector: ".js-popup-profile",
@@ -46,14 +85,11 @@ const editProfilePopup = new PopupWithForm({
 });
 
 const imagePopup = new PopupWithImage(".js-popup-picture");
-const delCardPopup = new PopupWithForm({popupSelector: ".js-popup-del-card", onSubmit: (cardIdData) => {
-  // api that deletes card from server
-}});
 
 editBtn.addEventListener("click", () => {
   const pageData = userInfo.getUserInfo();
   inputName.value = pageData.name;
-  inputJob.value = pageData.job;
+  inputJob.value = pageData.about;
   editProfilePopup.open();
 });
 
@@ -62,11 +98,17 @@ const addCardPopup = new PopupWithForm({
   onSubmit: (formData) => {
     formData.likes = [];
     api.postNewCard(formData);
-    const card = new Card(formData, cardTemplateSelector, (cardData) => {
-      imagePopup.open(cardData);
-    }, () => {
-      delCardPopup.open();
-    });
+    const card = new Card(
+      formData,
+      cardTemplateSelector,
+      (cardData) => {
+        imagePopup.open(cardData);
+      },
+      (card) => {
+        api.delCard(card.id());
+        card.deleteCard();
+      }
+    );
     const cardElement = card.generateCard();
     cardList.addItem(cardElement);
   },
@@ -76,35 +118,8 @@ addBtn.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-// Render gallery
-const cardList = new Section(
-  {
-    data: api.getInitialCards(),
-    renderer: (item) => {
-      const card = new Card(item, cardTemplateSelector, (cardData) => {
-        imagePopup.open(cardData);
-      }, () => {
-        delCardPopup.open();
-      });
-      const cardElement = card.generateCard();
-      cardList.addItem(cardElement);
-    },
-  },
-  ".gallery"
-);
-cardList.renderItems();
-
 // Validate forms
 const validatedProfileForm = new FormValidator(settings, profileForm);
 const validatedCardForm = new FormValidator(settings, cardForm);
 validatedProfileForm.enableValidation();
 validatedCardForm.enableValidation();
-
-// load userinfo
-api.getUserInfo().then((userData) => {
-  avatar.src = userData.avatar;
-  name.textContent = userData.name;
-  about.textContent = userData.about;
-});
-
-

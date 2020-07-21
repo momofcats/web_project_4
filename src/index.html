@@ -103,9 +103,27 @@
     <div class="popup popup_background_light js-popup-del-card">
       <div class="popup__container popup__container_type_form">
         <button class="popup__btn-close button" type="button"></button>
-        <form class="form" action="#" name="delete card" novalidate>
+        <div class="form">
           <h2 class="form__title">Are you sure?</h2>
-          <button class="form__submit-btn" type="submit">Yes</button>
+          <button class="form__submit-btn" type="button">Yes</button>
+        </div>
+      </div>
+    </div>
+    <div class="popup popup_background_light js-popup-change-avatar">
+      <div class="popup__container popup__container_type_form">
+        <button class="popup__btn-close button" type="button"></button>
+        <form class="form" action="#" name="delete card" novalidate>
+          <h2 class="form__title">Change profile picture</h2>
+          <input
+            id="avatar-input"
+            type="url"
+            class="form__input js-input-link"
+            name="avatar"
+            placeholder="Url"
+            required
+          >
+          <span id="avatar-input-error" class="form__input-error"></span>
+          <button class="form__submit-btn" type="submit">Save</button>
         </form>
       </div>
     </div>

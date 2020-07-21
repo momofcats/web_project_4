@@ -11,6 +11,10 @@ export default class Api {
     return this.request("/users/me");
   }
 
+  getAppInfo() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
+
   updateUserInfo(formData) {
     return this.request(
       "/users/me",
@@ -20,6 +24,16 @@ export default class Api {
         about: formData.about,
       })
     );
+  }
+// DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
+  delCard(cardId) {
+    return this.request(
+      `/cards/${cardId}`,
+      "DELETE",
+    )
+  }
+  updateAvatar(formData) {
+    return this.request("/users/me/avatar", "PATCH", JSON.stringify({avatar: formData.avatar }))
   }
 
   postNewCard(formData) {
@@ -43,7 +57,7 @@ export default class Api {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
-    });
+    }).catch(console.log);
   }
 }
 
