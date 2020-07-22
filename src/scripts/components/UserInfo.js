@@ -9,7 +9,7 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._userName.textContent,
-      about: tuserInfohis._userJob.textContent,
+      about: this._userJob.textContent,
       avatar: this._userAvatar.src,
     };
   }

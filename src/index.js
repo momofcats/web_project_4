@@ -35,38 +35,32 @@ const userInfo = new UserInfo({
   userAvatarSelector: ".media__image",
 });
 
-const delCardPopup = new PopupWithConfirm(".js-popup-del-card");
-
 api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-    return userData;
-  })
-  .catch((err) => console.log(err))
-  .then((userData) => {
-    // Render gallery
+  .getAppInfo()
+  .then(([cards, userData]) => {
     const me = userData._id;
     const cardList = new Section(
       {
-        data: api.getInitialCards(),
-        renderer: (item) => {
-          item.isReadOnly = item.owner._id !== me;
-          const card = new Card(
-            item,
-            cardTemplateSelector,
-            (cardData) => {
-              imagePopup.open(cardData);
+        items: cards,
+        renderer: (data) => {
+          data.isReadOnly = data.owner._id !== me;
+          const card = new Card({
+            data,
+            templateSelector: cardTemplateSelector,
+            handleCardClick: () => {
+              imagePopup.open(data);
             },
-            (card) => {
-              delCardPopup.setOnConfirm(() => {
-                api.delCard(card.id());
-                card.deleteCard();
-                delCardPopup.close();
+            handleDelBtnClick: (card) => {
+             const delCardPopup = new PopupWithForm({
+                popupSelector: ".js-popup-del-card",
+                onSubmit: () => {
+                  api.delCard(card.id());
+                  card.deleteCard();
+                },
               });
               delCardPopup.open();
-            }
-          );
+            },
+          });
           const cardElement = card.generateCard();
           cardList.addItem(cardElement);
         },
@@ -74,7 +68,137 @@ api
       ".gallery"
     );
     cardList.renderItems();
-  });
+    userInfo.setUserInfo(userData);
+    const addCardPopup = new PopupWithForm({
+      popupSelector: ".js-popup-photo-form",
+      onSubmit: (formData) => {
+        formData.likes = [];
+        api.postNewCard(formData).then((res) => {
+          const card = new Card({
+            data: formData,
+            templateSelector: cardTemplateSelector,
+            handleCardClick: (cardData) => {
+              imagePopup.open(cardData);
+            },
+            handleDelBtnClick: (card) => {
+              const delCardPopup = new PopupWithForm({
+                popupSelector: ".js-popup-del-card",
+                onSubmit: () => {
+                  api.delCard(card.id());
+                  card.deleteCard();
+                },
+              });
+              delCardPopup.open();
+            },
+          });
+          const cardElement = card.generateCard();
+          cardList.addItem(cardElement);
+        });
+      },
+    });
+    addBtn.addEventListener("click", () => {
+      addCardPopup.open();
+    });
+  })
+  .catch(console.log);
+
+// api
+//   .getUserInfo()
+//   .then((userData) => {
+//     userInfo.setUserInfo(userData);
+//     return userData;
+//   })
+//   .catch((err) => console.log(err))
+//   .then((userData) => {
+//     // Render gallery
+//     const me = userData._id;
+//     const delCardPopup = new PopupWithForm({
+//       popupSelector: ".js-popup-del-card",
+//       onSubmit: (card) => {
+//         api.delCard(card.id());
+//         card.deleteCard();
+//       },
+//     });
+//     const cardList = new Section(
+//       {
+//         data: api.getInitialCards(),
+//         renderer: (data) => {
+//           data.isReadOnly = data.owner._id !== me;
+//           const card = new Card({
+//             data,
+//             templateSelector: cardTemplateSelector,
+//             handleCardClick: () => {
+//               imagePopup.open(data);
+//             },
+//             handleDelBtnClick: () => {
+//               // delCardPopup.setOnConfirm(() => {
+//               //   api.delCard(card.id());
+//               //   card.deleteCard();
+//               //   delCardPopup.close();
+//               // });
+//               delCardPopup.open();
+//             },
+//           });
+//           const cardElement = card.generateCard();
+//           cardList.addItem(cardElement);
+//         },
+//       },
+//       ".gallery"
+//     );
+//     cardList.renderItems();
+
+//     const addCardPopup = new PopupWithForm({
+//       popupSelector: ".js-popup-photo-form",
+//       onSubmit: (formData) => {
+//         formData.likes = [];
+//         api.postNewCard(formData);
+//         const card = new Card({
+//           data: formData,
+//           templateSelector: cardTemplateSelector,
+//           handleCardClick: (cardData) => {
+//             imagePopup.open(cardData);
+//           },
+//           handleDelBtnClick: () => {
+//             delCardPopup.open();
+//             // api.delCard(card.id());
+//             // card.deleteCard();
+//           },
+//         });
+//         const cardElement = card.generateCard();
+//         cardList.addItem(cardElement);
+//       },
+//     });
+
+//   addBtn.addEventListener("click", () => {
+//     addCardPopup.open();
+//   });
+// });
+
+// const addCardPopup = new PopupWithForm({
+//   popupSelector: ".js-popup-photo-form",
+//   onSubmit: (formData) => {
+//     formData.likes = [];
+//     api.postNewCard(formData);
+//     const card = new Card({
+//       data: formData,
+//       templateSelector: cardTemplateSelector,
+//       handleCardClick: (cardData) => {
+//         imagePopup.open(cardData);
+//       },
+//       handleDelBtnClick: () => {
+//         delCardPopup.open();
+//         // api.delCard(card.id());
+//         // card.deleteCard();
+//       },
+//     });
+//     const cardElement = card.generateCard();
+//     cardList.addItem(cardElement);
+//   },
+// });
+
+// addBtn.addEventListener("click", () => {del
+//   addCardPopup.open();
+// });
 
 const editProfilePopup = new PopupWithForm({
   popupSelector: ".js-popup-profile",
@@ -91,31 +215,6 @@ editBtn.addEventListener("click", () => {
   inputName.value = pageData.name;
   inputJob.value = pageData.about;
   editProfilePopup.open();
-});
-
-const addCardPopup = new PopupWithForm({
-  popupSelector: ".js-popup-photo-form",
-  onSubmit: (formData) => {
-    formData.likes = [];
-    api.postNewCard(formData);
-    const card = new Card(
-      formData,
-      cardTemplateSelector,
-      (cardData) => {
-        imagePopup.open(cardData);
-      },
-      (card) => {
-        api.delCard(card.id());
-        card.deleteCard();
-      }
-    );
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
-  },
-});
-
-addBtn.addEventListener("click", () => {
-  addCardPopup.open();
 });
 
 // Validate forms
