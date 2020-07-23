@@ -39,6 +39,7 @@ export const cardForm = popupCard.querySelector(".form");
 
 export const editBtn = document.querySelector(".media__btn_size_sm");
 export const addBtn = document.querySelector(".profile__btn");
+export const changeAvatar = document.querySelector(".media__btn_size_lg")
 
 //form data
 export const inputName = profileForm.querySelector(".js-input-name");

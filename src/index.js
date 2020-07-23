@@ -7,6 +7,7 @@ import {
   initialCards,
   editBtn,
   addBtn,
+  changeAvatar,
   inputJob,
   inputName,
   settings,
@@ -211,6 +212,15 @@ const editProfilePopup = new PopupWithForm({
   },
 });
 
+const changeAvatarPopup = new PopupWithForm({
+  popupSelector: ".js-popup-change-avatar",
+  onSubmit: (formData) => {
+    api.updateAvatar(formData).then(res => {
+      userInfo.setUserInfo(res);
+    }).catch(console.log);
+  }
+})
+
 const imagePopup = new PopupWithImage(".js-popup-picture");
 
 editBtn.addEventListener("click", () => {
@@ -219,6 +229,10 @@ editBtn.addEventListener("click", () => {
   inputJob.value = pageData.about;
   editProfilePopup.open();
 });
+
+changeAvatar.addEventListener("click", () => {
+  changeAvatarPopup.open();
+})
 
 // Validate forms
 const validatedProfileForm = new FormValidator(settings, profileForm);
