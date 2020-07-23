@@ -37,7 +37,7 @@ export const profileForm = popupProfile.querySelector(".form");
 const popupCard = document.querySelector(".js-popup-photo-form");
 export const cardForm = popupCard.querySelector(".form");
 
-export const editBtn = document.querySelector(".media__btn");
+export const editBtn = document.querySelector(".media__btn_size_sm");
 export const addBtn = document.querySelector(".profile__btn");
 
 //form data

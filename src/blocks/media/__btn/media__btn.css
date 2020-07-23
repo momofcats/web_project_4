@@ -1,23 +1,7 @@
 .media__btn {
   background-image: url('../../../images/edit.svg');
-  width: 24px;
-  height: 24px;
-  border: 1px solid #ffffff;
-  background-size: 7px 7px;
-  margin-left: 24px;
-  margin-bottom: -6px;
+
   background-color: #000;
 }
 
-@media screen and (max-width: 320px) {
-  .media__btn {
-    font-size: 14px;
-    line-height: 17px;
-    width: 18px;
-    height: 18px;
-    background-size: 5px 5px;
-    margin-left: 12px;
-    display: inline-block;
-    margin-bottom: -14px;
-  }
-}
+

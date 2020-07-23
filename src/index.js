@@ -54,8 +54,9 @@ api
              const delCardPopup = new PopupWithForm({
                 popupSelector: ".js-popup-del-card",
                 onSubmit: () => {
-                  api.delCard(card.id());
-                  card.deleteCard();
+                  api.delCard(card.id()).then(res => {
+                    card.deleteCard();
+                  }).catch(console.log);
                 },
               });
               delCardPopup.open();
@@ -75,7 +76,7 @@ api
         formData.likes = [];
         api.postNewCard(formData).then((res) => {
           const card = new Card({
-            data: formData,
+            data: res,
             templateSelector: cardTemplateSelector,
             handleCardClick: (cardData) => {
               imagePopup.open(cardData);
@@ -84,8 +85,10 @@ api
               const delCardPopup = new PopupWithForm({
                 popupSelector: ".js-popup-del-card",
                 onSubmit: () => {
-                  api.delCard(card.id());
-                  card.deleteCard();
+                  api.delCard(card.id()).then(res => {
+                    card.deleteCard();
+                  }).catch(console.log);
+
                 },
               });
               delCardPopup.open();

@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="pages/index.css"> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around The U.S.</title>
   </head>
   <body class="page">
     <header class="header">
-      <img src="images/logo.svg" alt="logo" class="header__logo">
+      <img src="images/logo.svg" alt="logo" class="header__logo" />
     </header>
     <main>
       <section class="profile page__section">
         <div class="media">
-          <img
-            alt="profile image"
-            class="media__image"
-          >
+          <div class="media__image-container">
+            <img alt="profile image" class="media__image" />
+            <button
+              class="media__btn media__btn_size_lg media__btn_hoverable"
+              type="button"
+            ></button>
+          </div>
           <div class="media__body">
             <div class="media__item">
               <h1 class="media__name"></h1>
-              <button class="media__btn button" type="button"></button>
+              <button
+                class="media__btn media__btn_size_sm button"
+                type="button"
+              ></button>
             </div>
             <p class="media__job"></p>
           </div>
@@ -47,7 +52,7 @@
             placeholder="Name"
             minlength="2"
             maxlength="40"
-          >
+          />
           <span id="name-input-error" class="form__input-error"></span>
           <input
             id="job-input"
@@ -58,7 +63,7 @@
             placeholder="About me"
             minlength="2"
             maxlength="200"
-          >
+          />
           <span id="job-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Save</button>
         </form>
@@ -78,7 +83,7 @@
             minlength="1"
             maxlength="30"
             required
-          >
+          />
           <span id="title-input-error" class="form__input-error"></span>
           <input
             id="link-input"
@@ -87,7 +92,7 @@
             name="link"
             placeholder="Image link"
             required
-          >
+          />
           <span id="link-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Create</button>
         </form>
@@ -96,7 +101,7 @@
     <div class="popup popup_background_dark js-popup-picture">
       <div class="popup__container popup__container_type_picture">
         <button class="popup__btn-close button" type="button"></button>
-        <img class="popup__image">
+        <img class="popup__image" />
         <h2 class="popup__title"></h2>
       </div>
     </div>
@@ -121,7 +126,7 @@
             name="avatar"
             placeholder="Url"
             required
-          >
+          />
           <span id="avatar-input-error" class="form__input-error"></span>
           <button class="form__submit-btn" type="submit">Save</button>
         </form>
