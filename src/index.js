@@ -207,8 +207,9 @@ api
 const editProfilePopup = new PopupWithForm({
   popupSelector: ".js-popup-profile",
   onSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
-    api.updateUserInfo(formData);
+    api.updateUserInfo(formData).then(res => {
+      userInfo.setUserInfo(res);
+    }).catch(console.log);
   },
 });
 
