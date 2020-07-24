@@ -99,7 +99,7 @@ api
     const addCardPopup = new PopupWithForm({
       popupSelector: ".js-popup-photo-form",
       onSubmit: (formData) => {
-        addCardPopup.onload(true, "Create");
+        addCardPopup.onload(true);
         api
           .postNewCard(formData)
           .then((res) => {
@@ -150,7 +150,7 @@ api
           })
           .catch(console.log)
           .finally(() => {
-            addCardPopup.onload(false, "Create");
+            addCardPopup.onload(false);
           });
       },
     });
@@ -163,7 +163,7 @@ api
 const editProfilePopup = new PopupWithForm({
   popupSelector: ".js-popup-profile",
   onSubmit: (formData) => {
-    editProfilePopup.onload(true, "Save");
+    editProfilePopup.onload(true);
     api
       .updateUserInfo(formData)
       .then((res) => {
@@ -171,7 +171,7 @@ const editProfilePopup = new PopupWithForm({
       })
       .catch(console.log)
       .finally(() => {
-        editProfilePopup.onload(false, "Save");
+        editProfilePopup.onload(false);
       });
   },
 });
@@ -179,7 +179,7 @@ const editProfilePopup = new PopupWithForm({
 const changeAvatarPopup = new PopupWithForm({
   popupSelector: ".js-popup-change-avatar",
   onSubmit: (formData) => {
-    changeAvatarPopup.onload(true, "Save");
+    changeAvatarPopup.onload(true);
     api
       .updateAvatar(formData)
       .then((res) => {
@@ -187,7 +187,7 @@ const changeAvatarPopup = new PopupWithForm({
       })
       .catch(console.log)
       .finally(() => {
-        changeAvatarPopup.onload(false, "Save");
+        changeAvatarPopup.onload(false);
       });
   },
 });
