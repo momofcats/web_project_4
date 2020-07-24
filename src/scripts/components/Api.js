@@ -71,8 +71,5 @@ export default class Api {
         }
         return Promise.reject(`Error: ${res.status}`);
       })
-      .catch(console.log);
   }
 }
-
-// other methods for working with the API

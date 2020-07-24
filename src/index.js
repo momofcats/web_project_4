@@ -28,8 +28,6 @@ const api = new Api({
   },
 });
 
-
-
 const userInfo = new UserInfo({
   userNameSelector: ".media__name",
   userJobSelector: ".media__job",
@@ -76,16 +74,16 @@ api
                     card.render();
                   })
                   .catch(console.log);
+              } else {
+                api
+                  .removeLike(card.id())
+                  .then((res) => {
+                    card.setLiked(res.likes.some((user) => user._id === me));
+                    card.setLikes(res.likes);
+                    card.render();
+                  })
+                  .catch(console.log);
               }
-              else {
-                api.removeLike(card.id()).then((res) => {
-                  card.setLiked(res.likes.some((user) => user._id === me));
-                  card.setLikes(res.likes);
-                  card.render();
-                })
-                .catch(console.log);
-              }
-
             },
           });
           const cardElement = card.generateCard();
@@ -133,14 +131,15 @@ api
                       card.render();
                     })
                     .catch(console.log);
-                }
-                else {
-                  api.removeLike(card.id()).then((res) => {
-                    card.setLiked(res.likes.some((user) => user._id === me));
-                    card.setLikes(res.likes);
-                    card.render();
-                  })
-                  .catch(console.log);
+                } else {
+                  api
+                    .removeLike(card.id())
+                    .then((res) => {
+                      card.setLiked(res.likes.some((user) => user._id === me));
+                      card.setLikes(res.likes);
+                      card.render();
+                    })
+                    .catch(console.log);
                 }
               },
             });

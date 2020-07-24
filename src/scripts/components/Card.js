@@ -28,14 +28,6 @@ export default class Card {
     this._likes = likes;
   }
 
-  isReadOnly() {
-    return this._isReadOnly;
-  }
-
-  setReadOnly(isReadOnly) {
-    this._isReadOnly = isReadOnly;
-  }
-
   isLiked() {
     return this._isLiked;
   }
@@ -47,18 +39,14 @@ export default class Card {
   id() {
     return this._id;
   }
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-
     return cardElement;
   }
-
-  // updateLikes() {
-  //   this._card.querySelector(".card__likes").textContent = this._likes.length;
-  // }
 
   render() {
     this._card.querySelector(
