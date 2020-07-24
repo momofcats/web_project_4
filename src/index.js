@@ -28,7 +28,7 @@ const api = new Api({
   },
 });
 
-// for loading user info on the page
+
 
 const userInfo = new UserInfo({
   userNameSelector: ".media__name",
@@ -77,12 +77,15 @@ api
                   })
                   .catch(console.log);
               }
-              // api
-              //   .changeLikeCardStatus(card.id())
-              //   .then((res) => {
-              //     card.toggleLike();
-              //   })
-              //   .catch(console.log);
+              else {
+                api.removeLike(card.id()).then((res) => {
+                  card.setLiked(res.likes.some((user) => user._id === me));
+                  card.setLikes(res.likes);
+                  card.render();
+                })
+                .catch(console.log);
+              }
+
             },
           });
           const cardElement = card.generateCard();
@@ -120,16 +123,28 @@ api
                 });
                 delCardPopup.open();
               },
-              handleLikeBtnClick: () => {
-                api
-                  .changeLikeCardStatus(card.id())
-                  .then((res) => {
-                    // card.toggleLike();
-                    // res.likes
+              handleLikeBtnClick: (card) => {
+                if (!card.isLiked()) {
+                  api
+                    .addLike(card.id())
+                    .then((res) => {
+                      card.setLiked(res.likes.some((user) => user._id === me));
+                      card.setLikes(res.likes);
+                      card.render();
+                    })
+                    .catch(console.log);
+                }
+                else {
+                  api.removeLike(card.id()).then((res) => {
+                    card.setLiked(res.likes.some((user) => user._id === me));
+                    card.setLikes(res.likes);
+                    card.render();
                   })
                   .catch(console.log);
+                }
               },
             });
+            card.setLiked(false);
             const cardElement = card.generateCard();
             cardList.addItem(cardElement);
           })
