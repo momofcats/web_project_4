@@ -1,3 +1,5 @@
+import { data } from "autoprefixer";
+
 export default class Api {
   constructor(options) {
     this.options = options;
@@ -25,15 +27,17 @@ export default class Api {
       })
     );
   }
-// DELETE https://around.nomoreparties.co/v1/groupId/cards/cardId
+
   delCard(cardId) {
-    return this.request(
-      `/cards/${cardId}`,
-      "DELETE",
-    )
+    return this.request(`/cards/${cardId}`, "DELETE");
   }
+
   updateAvatar(formData) {
-    return this.request("/users/me/avatar", "PATCH", JSON.stringify({avatar: formData.avatar }))
+    return this.request(
+      "/users/me/avatar",
+      "PATCH",
+      JSON.stringify({ avatar: formData.avatar })
+    );
   }
 
   postNewCard(formData) {
@@ -47,17 +51,27 @@ export default class Api {
     );
   }
 
+  addLike(cardId) {
+    return this.request(`/cards/likes/${cardId}`, "PUT");
+  }
+
+  removeLike(cardId) {
+    return this.request(`/cards/likes/${cardId}`, "DELETE");
+  }
+
   request(api, method, body) {
     return fetch(`${this.options.baseUrl}${api}`, {
       headers: this.options.headers,
       method,
       body,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    }).catch(console.log);
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch(console.log);
   }
 }
 

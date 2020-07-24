@@ -4,6 +4,7 @@ export default class PopupWithForm extends Popup {
   constructor({ popupSelector, onSubmit }) {
     super(popupSelector);
     this._form = this._element.querySelector(".form");
+    this._formButton = this._form.querySelector(".form__submit-btn");
     this._onSubmit = onSubmit;
     this._handleSubmit = this.handleSubmit.bind(this);
   }
@@ -34,5 +35,14 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._removeEventListeners();
     this._element.querySelector(".form").reset();
+  }
+
+  onload(isLoading,text) {
+    if(isLoading) {
+      this._formButton.textContent = "Saving...";
+    }
+    else {
+      this._formButton.textContent = text;
+    }
   }
 }
