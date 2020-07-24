@@ -182,7 +182,7 @@ const changeAvatarPopup = new PopupWithForm({
     api
       .updateAvatar(formData)
       .then((res) => {
-        userInfo.setUserInfo({ avatar: res.avatar });
+        userInfo.setUserInfo(res);
       })
       .catch(console.log)
       .finally(() => {
