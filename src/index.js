@@ -18,7 +18,6 @@ import UserInfo from "./scripts/components/UserInfo";
 import PopupWithForm from "./scripts/components/PopupWithForm";
 import PopupWithImage from "./scripts/components/PopupWithImage";
 import Api from "./scripts/components/Api";
-import { data } from "autoprefixer";
 
 const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-2",
@@ -32,6 +31,10 @@ const userInfo = new UserInfo({
   userNameSelector: ".media__name",
   userJobSelector: ".media__job",
   userAvatarSelector: ".media__image",
+});
+
+const delCardPopup = new PopupWithForm({
+  popupSelector: ".js-popup-del-card"
 });
 
 api
@@ -50,21 +53,18 @@ api
             handleCardClick: () => {
               imagePopup.open(data);
             },
-            handleDelBtnClick: (card) => {
-              const delCardPopup = new PopupWithForm({
-                popupSelector: ".js-popup-del-card",
-                onSubmit: () => {
-                  api
-                    .delCard(card.id())
-                    .then((res) => {
-                      card.deleteCard();
-                    })
-                    .catch(console.log);
-                },
+            handleDelBtnClick: () => {
+              delCardPopup.setOnSubmit(() => {
+                api
+                  .delCard(card.id())
+                  .then((res) => {
+                    card.deleteCard();
+                  })
+                  .catch(console.log);
               });
               delCardPopup.open();
             },
-            handleLikeBtnClick: (card) => {
+            handleLikeBtnClick: () => {
               if (!card.isLiked()) {
                 api
                   .addLike(card.id())
@@ -107,21 +107,18 @@ api
               handleCardClick: (cardData) => {
                 imagePopup.open(cardData);
               },
-              handleDelBtnClick: (card) => {
-                const delCardPopup = new PopupWithForm({
-                  popupSelector: ".js-popup-del-card",
-                  onSubmit: () => {
-                    api
-                      .delCard(card.id())
-                      .then((res) => {
-                        card.deleteCard();
-                      })
-                      .catch(console.log);
-                  },
+              handleDelBtnClick: () => {
+                delCardPopup.setOnSubmit(() => {
+                  api
+                    .delCard(card.id())
+                    .then((res) => {
+                      card.deleteCard();
+                    })
+                    .catch(console.log);
                 });
                 delCardPopup.open();
               },
-              handleLikeBtnClick: (card) => {
+              handleLikeBtnClick: () => {
                 if (!card.isLiked()) {
                   api
                     .addLike(card.id())
@@ -182,7 +179,7 @@ const changeAvatarPopup = new PopupWithForm({
     api
       .updateAvatar(formData)
       .then((res) => {
-        userInfo.setUserInfo({ avatar: res.avatar });
+        userInfo.setUserInfo(res);
       })
       .catch(console.log)
       .finally(() => {

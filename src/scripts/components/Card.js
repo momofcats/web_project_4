@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 
 export default class Card {
   constructor({
