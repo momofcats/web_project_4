@@ -142,7 +142,7 @@ api
             });
             card.setLiked(false);
             const cardElement = card.generateCard();
-            cardList.addItem(cardElement);
+            cardList.prependItem(cardElement);
           })
           .catch(console.log)
           .finally(() => {
